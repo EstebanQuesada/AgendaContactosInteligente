@@ -4,6 +4,8 @@ namespace AgendaContactosInteligente.Data;
 
 public interface IContactoRepository
 {
+    Task<IReadOnlyList<Contacto>> ListAsync();
+
     Task<Contacto?> GetByIdAsync(int contactoId);
     Task<int> CreateAsync(Contacto contacto);
     Task UpdateAsync(Contacto contacto);

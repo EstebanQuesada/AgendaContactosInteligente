@@ -4,90 +4,134 @@
     ViewData["Title"] = "Detalle del contacto";
 }
 
-<div class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-lg-9">
-            @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
-            {
-                <div class="alert alert-success">@Model.SuccessMessage</div>
-            }
+<div class="row justify-content-center py-2 py-lg-4">
+    <div class="col-12 col-xl-10">
+        @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
+        {
+            <div class="alert alert-success shadow-sm mb-4">
+                @Model.SuccessMessage
+            </div>
+        }
 
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <div class="card">
+            <div class="card-header py-4 px-4 px-lg-5">
+                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3">
                     <div>
-                        <h2 class="h4 mb-0">@Model.Contacto!.Nombre @Model.Contacto.Apellido</h2>
+                        <div class="page-eyebrow">Detalle del contacto</div>
+                        <h1 class="page-title h3 mb-1">@Model.Contacto!.Nombre @Model.Contacto.Apellido</h1>
                         <small class="text-muted">
                             Creado el @Model.Contacto.FechaCreacion.ToString("dd/MM/yyyy HH:mm")
                         </small>
                     </div>
-                    <div class="d-flex gap-2">
-                        <a asp-page="Edit" asp-route-id="@Model.Contacto.ContactoID" class="btn btn-primary btn-sm">Editar</a>
-                        <a asp-page="Delete" asp-route-id="@Model.Contacto.ContactoID" class="btn btn-danger btn-sm">Eliminar</a>
+
+                    <div class="d-flex flex-column flex-sm-row gap-2">
+                        <a asp-page="Edit"
+                           asp-route-id="@Model.Contacto.ContactoID"
+                           class="btn btn-primary px-4">
+                            Editar
+                        </a>
+
+                        <a asp-page="Delete"
+                           asp-route-id="@Model.Contacto.ContactoID"
+                           class="btn btn-outline-secondary px-4">
+                            Eliminar
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <div class="card-body">
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <h3 class="h6 text-uppercase text-muted">Datos generales</h3>
-                            <p class="mb-1"><strong>Favorito:</strong> @(Model.Contacto.EsFavorito ? "Sí" : "No")</p>
+            <div class="card-body p-4 p-lg-5">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="section-card h-100">
+                            <h2 class="section-title">Datos generales</h2>
+
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="fw-semibold">Favorito</span>
+                                <span class="info-chip">
+                                    @(Model.Contacto.EsFavorito ? "Sí" : "No")
+                                </span>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            <h3 class="h6 text-uppercase text-muted">Teléfonos</h3>
+                    <div class="col-md-6">
+                        <div class="section-card h-100">
+                            <h2 class="section-title">Teléfonos</h2>
+
                             @if (Model.Contacto.Telefonos.Any())
                             {
-                                foreach (var telefono in Model.Contacto.Telefonos)
-                                {
-                                    <p class="mb-1">@telefono.Numero <span class="text-muted">(@telefono.Tipo)</span></p>
-                                }
+                                <div class="d-flex flex-column gap-2">
+                                    @foreach (var telefono in Model.Contacto.Telefonos)
+                                    {
+                                        <div class="note-box">
+                                            <span class="fw-semibold">@telefono.Numero</span>
+                                            <span class="text-muted ms-1">(@telefono.Tipo)</span>
+                                        </div>
+                                    }
+                                </div>
                             }
                             else
                             {
                                 <p class="text-muted mb-0">Sin teléfonos registrados.</p>
                             }
                         </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            <h3 class="h6 text-uppercase text-muted">Correos</h3>
+                    <div class="col-md-6">
+                        <div class="section-card h-100">
+                            <h2 class="section-title">Correos</h2>
+
                             @if (Model.Contacto.Correos.Any())
                             {
-                                foreach (var correo in Model.Contacto.Correos)
-                                {
-                                    <p class="mb-1">@correo.Email</p>
-                                }
+                                <div class="d-flex flex-column gap-2">
+                                    @foreach (var correo in Model.Contacto.Correos)
+                                    {
+                                        <div class="note-box">@correo.Email</div>
+                                    }
+                                </div>
                             }
                             else
                             {
                                 <p class="text-muted mb-0">Sin correos registrados.</p>
                             }
                         </div>
+                    </div>
 
-                        <div class="col-md-6">
-                            <h3 class="h6 text-uppercase text-muted">Dirección</h3>
+                    <div class="col-md-6">
+                        <div class="section-card h-100">
+                            <h2 class="section-title">Dirección</h2>
+
                             @if (Model.Contacto.Direccion is not null)
                             {
-                                <p class="mb-1"><strong>Provincia:</strong> @Model.Contacto.Direccion.Provincia</p>
-                                <p class="mb-1"><strong>Cantón:</strong> @Model.Contacto.Direccion.Canton</p>
-                                <p class="mb-1"><strong>Distrito:</strong> @Model.Contacto.Direccion.Distrito</p>
-                                <p class="mb-0"><strong>Exacta:</strong> @Model.Contacto.Direccion.DireccionExacta</p>
+                                <div class="d-flex flex-column gap-2">
+                                    <div><span class="fw-semibold">Provincia:</span> @Model.Contacto.Direccion.Provincia</div>
+                                    <div><span class="fw-semibold">Cantón:</span> @Model.Contacto.Direccion.Canton</div>
+                                    <div><span class="fw-semibold">Distrito:</span> @Model.Contacto.Direccion.Distrito</div>
+                                    <div><span class="fw-semibold">Exacta:</span> @Model.Contacto.Direccion.DireccionExacta</div>
+                                </div>
                             }
                             else
                             {
                                 <p class="text-muted mb-0">Sin dirección registrada.</p>
                             }
                         </div>
+                    </div>
 
-                        <div class="col-12">
-                            <h3 class="h6 text-uppercase text-muted">Notas</h3>
+                    <div class="col-12">
+                        <div class="section-card">
+                            <h2 class="section-title">Notas</h2>
+
                             @if (Model.Contacto.Notas.Any())
                             {
-                                foreach (var nota in Model.Contacto.Notas)
-                                {
-                                    <div class="border rounded p-3 mb-2 bg-light-subtle">
-                                        @nota.Contenido
-                                    </div>
-                                }
+                                <div class="d-flex flex-column gap-3">
+                                    @foreach (var nota in Model.Contacto.Notas)
+                                    {
+                                        <div class="note-box">
+                                            @nota.Contenido
+                                        </div>
+                                    }
+                                </div>
                             }
                             else
                             {
@@ -95,6 +139,12 @@
                             }
                         </div>
                     </div>
+                </div>
+
+                <div class="mt-4 pt-2">
+                    <a asp-page="Index" class="btn btn-outline-secondary px-4">
+                        Volver a la lista
+                    </a>
                 </div>
             </div>
         </div>

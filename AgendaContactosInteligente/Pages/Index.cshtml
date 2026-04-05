@@ -1,31 +1,22 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center mt-5">
-
-    <h1 class="display-4">
-        Agenda de Contactos Inteligente
-    </h1>
-
-    <p class="lead">
-        Sistema de gestión de contactos con búsqueda avanzada
+<div class="py-5 text-center">
+    <h1 class="display-5 fw-bold">Agenda de Contactos Inteligente</h1>
+    <p class="lead text-muted mt-3">
+        Sistema de gestión de contactos con acceso a creación, consulta, edición y eliminación.
     </p>
 
-    <div class="mt-4">
-
-        <a asp-page="/Contactos/Create"
-           class="btn btn-primary btn-lg me-2">
-            Nuevo Contacto
+    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+        <a asp-page="/Contactos/Index" class="btn btn-primary btn-lg">
+            Ver lista de contactos
         </a>
 
-        <a asp-page="/Contactos/Index"
-           class="btn btn-outline-primary btn-lg">
-            Ver Contactos
+        <a asp-page="/Contactos/Create" class="btn btn-outline-primary btn-lg">
+            Crear contacto
         </a>
-
     </div>
-
 </div>

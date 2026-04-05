@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,66 +9,50 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AgendaContactosInteligente.styles.css" asp-append-version="true" />
 </head>
-
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
             <div class="container">
-
-                <a class="navbar-brand" asp-page="/Index">
+                <a class="navbar-brand fw-bold" asp-page="/Index">
                     AgendaContactosInteligente
                 </a>
 
                 <button class="navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target=".navbar-collapse">
+                        data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar"
+                        aria-expanded="false"
+                        aria-label="Mostrar navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-
-                    <ul class="navbar-nav flex-grow-1">
-
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Index">
-                                Inicio
-                            </a>
+                            <a class="nav-link" asp-page="/Index">Inicio</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Contactos/Create">
-                                Nuevo Contacto
-                            </a>
+                            <a class="nav-link" asp-page="/Contactos/Index">Lista Contactos</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Contactos/Index">
-                                Lista Contactos
-                            </a>
+                            <a class="nav-link" asp-page="/Contactos/Create">Nuevo Contacto</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Privacy">
-                                Privacy
-                            </a>
+                            <a class="nav-link" asp-page="/Privacy">Privacy</a>
                         </li>
-
                     </ul>
-
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <main class="container py-4">
+        @RenderBody()
+    </main>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top text-muted py-3 mt-4">
         <div class="container">
             &copy; 2026 - AgendaContactosInteligente
         </div>
@@ -76,9 +60,8 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>

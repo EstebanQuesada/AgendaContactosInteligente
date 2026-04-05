@@ -13,6 +13,17 @@ public class ContactoRepository : IContactoRepository
         _connectionFactory = connectionFactory;
     }
 
+    public async Task<IReadOnlyList<Contacto>> ListAsync()
+    {
+        using var connection = _connectionFactory.CreateConnection();
+
+        var rows = await connection.QueryAsync<Contacto>(
+            "dbo.usp_Contacto_List",
+            commandType: CommandType.StoredProcedure);
+
+        return rows.ToList();
+    }
+
     public async Task<Contacto?> GetByIdAsync(int contactoId)
     {
         using var connection = _connectionFactory.CreateConnection();

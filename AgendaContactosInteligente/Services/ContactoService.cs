@@ -13,6 +13,9 @@ public class ContactoService : IContactoService
         _repository = repository;
     }
 
+    public Task<IReadOnlyList<Contacto>> ListAsync()
+        => _repository.ListAsync();
+
     public async Task<int> CrearAsync(ContactoFormViewModel model)
     {
         ValidarModelo(model);
