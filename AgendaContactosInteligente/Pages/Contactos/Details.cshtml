@@ -4,17 +4,17 @@
     ViewData["Title"] = "Detalle del contacto";
 }
 
-<div class="row justify-content-center py-2 py-lg-4">
+<div class="row justify-content-center py-2 py-lg-4 fade-up">
     <div class="col-12 col-xl-10">
         @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
         {
-            <div class="alert alert-success shadow-sm mb-4">
+            <div class="alert alert-success app-alert-success mb-4">
                 @Model.SuccessMessage
             </div>
         }
 
-        <div class="card">
-            <div class="card-header py-4 px-4 px-lg-5">
+        <div class="card app-card border-0">
+            <div class="card-header app-detail-header py-4 px-4 px-lg-5">
                 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3">
                     <div>
                         <div class="page-eyebrow">Detalle del contacto</div>
@@ -27,13 +27,13 @@
                     <div class="d-flex flex-column flex-sm-row gap-2">
                         <a asp-page="Edit"
                            asp-route-id="@Model.Contacto.ContactoID"
-                           class="btn btn-primary px-4">
+                           class="btn btn-app-primary px-4">
                             Editar
                         </a>
 
                         <a asp-page="Delete"
                            asp-route-id="@Model.Contacto.ContactoID"
-                           class="btn btn-outline-secondary px-4">
+                           class="btn btn-app-outline px-4">
                             Eliminar
                         </a>
                     </div>
@@ -46,9 +46,9 @@
                         <div class="section-card h-100">
                             <h2 class="section-title">Datos generales</h2>
 
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
                                 <span class="fw-semibold">Favorito</span>
-                                <span class="info-chip">
+                                <span class="info-chip @(Model.Contacto.EsFavorito ? "chip-favorite" : "chip-normal")">
                                     @(Model.Contacto.EsFavorito ? "Sí" : "No")
                                 </span>
                             </div>
@@ -142,8 +142,8 @@
                 </div>
 
                 <div class="mt-4 pt-2">
-                    <a asp-page="Index" class="btn btn-outline-secondary px-4">
-                        Volver a la lista
+                    <a asp-page="Index" class="btn btn-app-outline px-4">
+                        Volver al panel
                     </a>
                 </div>
             </div>

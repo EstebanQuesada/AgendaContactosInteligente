@@ -4,92 +4,123 @@
     ViewData["Title"] = "Lista de contactos";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-        <h2 class="mb-1">Lista de contactos</h2>
-        <p class="text-muted mb-0">Consulta y administra los contactos registrados.</p>
+<section class="page-section fade-up">
+    <div class="page-header-card mb-4">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+            <div>
+                <div class="page-eyebrow">Contactos</div>
+                <h1 class="page-title mb-1">Panel de contactos</h1>
+                <p class="page-subtitle mb-0">
+                    Consulta, administra y accede rápidamente a las acciones principales.
+                </p>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row gap-2">
+                <a asp-page="/Contactos/Create" class="btn btn-app-primary">
+                    Nuevo contacto
+                </a>
+            </div>
+        </div>
+
+        <div class="quick-access-grid mt-4">
+            <a asp-page="/Contactos/Create" class="quick-access-card">
+                <div class="quick-access-icon qa-green">＋</div>
+                <div>
+                    <h3>Agregar contacto</h3>
+                    <p>Registrar un nuevo contacto rápidamente.</p>
+                </div>
+            </a>
+
+            <a asp-page="/Contactos/Index" class="quick-access-card active">
+                <div class="quick-access-icon qa-blue">☰</div>
+                <div>
+                    <h3>Listado</h3>
+                    <p>Ver y administrar los contactos registrados.</p>
+                </div>
+            </a>
+        </div>
     </div>
 
-    <a asp-page="/Contactos/Create" class="btn btn-primary">
-        Nuevo contacto
-    </a>
-</div>
+    @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
+    {
+        <div class="alert alert-success app-alert-success mb-4">
+            @Model.SuccessMessage
+        </div>
+    }
 
-@if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
-{
-    <div class="alert alert-success">
-        @Model.SuccessMessage
-    </div>
-}
-
-<div class="card shadow-sm border-0">
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th style="width: 90px;">Favorito</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th style="width: 180px;">Fecha creación</th>
-                        <th class="text-end" style="width: 260px;">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (!Model.Contactos.Any())
-                    {
+    <div class="card app-card border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table app-table align-middle mb-0">
+                    <thead>
                         <tr>
-                            <td colspan="5" class="text-center py-4 text-muted">
-                                No hay contactos registrados.
-                            </td>
+                            <th style="width: 110px;">Favorito</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th style="width: 200px;">Fecha creación</th>
+                            <th class="text-end" style="width: 280px;">Acciones</th>
                         </tr>
-                    }
-                    else
-                    {
-                        foreach (var contacto in Model.Contactos)
+                    </thead>
+                    <tbody>
+                        @if (!Model.Contactos.Any())
                         {
                             <tr>
-                                <td>
-                                    @if (contacto.EsFavorito)
-                                    {
-                                        <span class="badge bg-warning text-dark">Sí</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-secondary">No</span>
-                                    }
-                                </td>
-
-                                <td>@contacto.Nombre</td>
-                                <td>@(string.IsNullOrWhiteSpace(contacto.Apellido) ? "-" : contacto.Apellido)</td>
-                                <td>@contacto.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
-
-                                <td class="text-end">
-                                    <div class="btn-group" role="group">
-                                        <a asp-page="/Contactos/Details"
-                                           asp-route-id="@contacto.ContactoID"
-                                           class="btn btn-outline-secondary btn-sm">
-                                            Ver
-                                        </a>
-
-                                        <a asp-page="/Contactos/Edit"
-                                           asp-route-id="@contacto.ContactoID"
-                                           class="btn btn-outline-primary btn-sm">
-                                            Editar
-                                        </a>
-
-                                        <a asp-page="/Contactos/Delete"
-                                           asp-route-id="@contacto.ContactoID"
-                                           class="btn btn-outline-danger btn-sm">
-                                            Eliminar
-                                        </a>
+                                <td colspan="5" class="text-center py-5 text-muted">
+                                    <div class="empty-state-table">
+                                        <div class="empty-state-icon">⌁</div>
+                                        <div class="fw-semibold mb-1">No hay contactos registrados</div>
+                                        <div class="small">Cuando agregues contactos aparecerán aquí.</div>
                                     </div>
                                 </td>
                             </tr>
                         }
-                    }
-                </tbody>
-            </table>
+                        else
+                        {
+                            foreach (var contacto in Model.Contactos)
+                            {
+                                <tr>
+                                    <td>
+                                        @if (contacto.EsFavorito)
+                                        {
+                                            <span class="badge favorite-badge">Sí</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge normal-badge">No</span>
+                                        }
+                                    </td>
+
+                                    <td class="fw-semibold text-dark">@contacto.Nombre</td>
+                                    <td>@(string.IsNullOrWhiteSpace(contacto.Apellido) ? "-" : contacto.Apellido)</td>
+                                    <td class="text-muted">@contacto.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
+
+                                    <td class="text-end">
+                                        <div class="d-flex justify-content-end flex-wrap gap-2">
+                                            <a asp-page="/Contactos/Details"
+                                               asp-route-id="@contacto.ContactoID"
+                                               class="btn btn-sm btn-action btn-action-neutral">
+                                                Ver
+                                            </a>
+
+                                            <a asp-page="/Contactos/Edit"
+                                               asp-route-id="@contacto.ContactoID"
+                                               class="btn btn-sm btn-action btn-action-primary">
+                                                Editar
+                                            </a>
+
+                                            <a asp-page="/Contactos/Delete"
+                                               asp-route-id="@contacto.ContactoID"
+                                               class="btn btn-sm btn-action btn-action-danger">
+                                                Eliminar
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+</section>

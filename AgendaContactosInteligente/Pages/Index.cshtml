@@ -4,19 +4,54 @@
     ViewData["Title"] = "Inicio";
 }
 
-<div class="py-5 text-center">
-    <h1 class="display-5 fw-bold">Agenda de Contactos Inteligente</h1>
-    <p class="lead text-muted mt-3">
-        Sistema de gestión de contactos con acceso a creación, consulta, edición y eliminación.
-    </p>
+<section class="hero-section fade-up">
+    <div class="hero-card hero-card-bubbles">
+        <div class="hero-bubbles" aria-hidden="true">
+            <span class="bubble bubble-1"></span>
+            <span class="bubble bubble-2"></span>
+            <span class="bubble bubble-3"></span>
+            <span class="bubble bubble-4"></span>
+            <span class="bubble bubble-5"></span>
+            <span class="bubble bubble-6"></span>
+        </div>
 
-    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-        <a asp-page="/Contactos/Index" class="btn btn-primary btn-lg">
-            Ver lista de contactos
-        </a>
+        <div class="hero-content">
+            <div class="hero-badge">Sistema de gestión</div>
 
-        <a asp-page="/Contactos/Create" class="btn btn-outline-primary btn-lg">
-            Crear contacto
-        </a>
+            <h1 class="hero-title">
+                Agenda de Contactos
+                <br />
+                Inteligente
+            </h1>
+
+            <p class="hero-subtitle">
+                Organiza, consulta, crea, edita y administra tus contactos en una interfaz más clara, moderna y profesional.
+            </p>
+
+            <div class="hero-actions">
+                <a asp-page="/Contactos/Index" class="btn btn-app-primary btn-lg">
+                    Ir al panel de contactos
+                </a>
+
+                <a asp-page="/Contactos/Create" class="btn btn-app-outline btn-lg">
+                    Crear contacto
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-dot dot-1"></span>
+                    <span>Gestión ordenada</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-dot dot-2"></span>
+                    <span>Diseño responsivo</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-dot dot-3"></span>
+                    <span>Experiencia más clara</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>

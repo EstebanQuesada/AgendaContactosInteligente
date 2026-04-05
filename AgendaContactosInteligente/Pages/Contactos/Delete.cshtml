@@ -4,12 +4,13 @@
     ViewData["Title"] = "Eliminar contacto";
 }
 
-<div class="row justify-content-center py-2 py-lg-4">
+<div class="row justify-content-center py-2 py-lg-4 fade-up">
     <div class="col-12 col-lg-8 col-xl-7">
-        <div class="card">
-            <div class="card-header py-4 px-4 px-lg-5">
+        <div class="card app-card border-0">
+            <div class="card-header app-danger-header py-4 px-4 px-lg-5">
                 <div class="page-eyebrow">Gestión de contactos</div>
-                <h1 class="page-title h3 text-danger">Eliminar contacto</h1>
+                <h1 class="page-title h3 text-danger mb-1">Eliminar contacto</h1>
+                <p class="text-muted mb-0">Revisa la información antes de confirmar esta acción.</p>
             </div>
 
             <div class="card-body p-4 p-lg-5">
@@ -28,11 +29,11 @@
                     <div class="d-flex flex-column flex-sm-row justify-content-end gap-2">
                         <a asp-page="Details"
                            asp-route-id="@Model.Contacto?.ContactoID"
-                           class="btn btn-outline-secondary px-4">
+                           class="btn btn-app-outline px-4">
                             Cancelar
                         </a>
 
-                        <button type="submit" class="btn btn-danger px-4">
+                        <button type="submit" class="btn btn-danger px-4 rounded-pill">
                             Eliminar
                         </button>
                     </div>

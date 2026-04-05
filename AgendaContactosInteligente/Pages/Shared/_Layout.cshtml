@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AgendaContactosInteligente.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="app-shell">
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+        <nav class="navbar navbar-expand-lg app-navbar sticky-top">
             <div class="container">
-                <a class="navbar-brand fw-bold" asp-page="/Index">
-                    AgendaContactosInteligente
+                <a class="navbar-brand app-brand" asp-page="/Index">
+                    <span class="brand-mark">AC</span>
+                    <span>Agenda Contactos Inteligente</span>
                 </a>
 
-                <button class="navbar-toggler"
+                <button class="navbar-toggler border-0 shadow-none"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#mainNavbar"
@@ -29,18 +30,47 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="mainNavbar">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/Index">Inicio</a>
+                            <a class="nav-link app-nav-link" asp-page="/Index">Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/Contactos/Index">Lista Contactos</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle app-nav-link"
+                               href="#"
+                               id="contactosDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Contactos
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end app-dropdown shadow-lg border-0"
+                                aria-labelledby="contactosDropdown">
+                                <li>
+                                    <a class="dropdown-item app-dropdown-item" asp-page="/Contactos/Index">
+                                        <span class="dropdown-item-title">Panel de contactos</span>
+                                        <small class="dropdown-item-text">Accede al listado y administración</small>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item app-dropdown-item" asp-page="/Contactos/Create">
+                                        <span class="dropdown-item-title">Agregar contacto</span>
+                                        <small class="dropdown-item-text">Registrar un nuevo contacto</small>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item app-dropdown-item" asp-page="/Contactos/Index">
+                                        <span class="dropdown-item-title">Listado de contactos</span>
+                                        <small class="dropdown-item-text">Consultar y administrar registros</small>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/Contactos/Create">Nuevo Contacto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link app-nav-link" asp-page="/Privacy">Privacidad</a>
                         </li>
                     </ul>
                 </div>
@@ -48,13 +78,14 @@
         </nav>
     </header>
 
-    <main class="container py-4">
+    <main class="container app-main">
         @RenderBody()
     </main>
 
-    <footer class="border-top text-muted py-3 mt-4">
-        <div class="container">
-            &copy; 2026 - AgendaContactosInteligente
+    <footer class="app-footer mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <div>&copy; 2026 - AgendaContactosInteligente</div>
+            <div class="footer-mini-text">Gestión moderna de contactos</div>
         </div>
     </footer>
 
