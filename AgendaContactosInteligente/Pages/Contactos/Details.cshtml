@@ -1,0 +1,102 @@
+﻿@page "{id:int}"
+@model AgendaContactosInteligente.Pages.Contactos.DetailsModel
+@{
+    ViewData["Title"] = "Detalle del contacto";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
+            {
+                <div class="alert alert-success">@Model.SuccessMessage</div>
+            }
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="h4 mb-0">@Model.Contacto!.Nombre @Model.Contacto.Apellido</h2>
+                        <small class="text-muted">
+                            Creado el @Model.Contacto.FechaCreacion.ToString("dd/MM/yyyy HH:mm")
+                        </small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a asp-page="Edit" asp-route-id="@Model.Contacto.ContactoID" class="btn btn-primary btn-sm">Editar</a>
+                        <a asp-page="Delete" asp-route-id="@Model.Contacto.ContactoID" class="btn btn-danger btn-sm">Eliminar</a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h3 class="h6 text-uppercase text-muted">Datos generales</h3>
+                            <p class="mb-1"><strong>Favorito:</strong> @(Model.Contacto.EsFavorito ? "Sí" : "No")</p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h3 class="h6 text-uppercase text-muted">Teléfonos</h3>
+                            @if (Model.Contacto.Telefonos.Any())
+                            {
+                                foreach (var telefono in Model.Contacto.Telefonos)
+                                {
+                                    <p class="mb-1">@telefono.Numero <span class="text-muted">(@telefono.Tipo)</span></p>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted mb-0">Sin teléfonos registrados.</p>
+                            }
+                        </div>
+
+                        <div class="col-md-6">
+                            <h3 class="h6 text-uppercase text-muted">Correos</h3>
+                            @if (Model.Contacto.Correos.Any())
+                            {
+                                foreach (var correo in Model.Contacto.Correos)
+                                {
+                                    <p class="mb-1">@correo.Email</p>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted mb-0">Sin correos registrados.</p>
+                            }
+                        </div>
+
+                        <div class="col-md-6">
+                            <h3 class="h6 text-uppercase text-muted">Dirección</h3>
+                            @if (Model.Contacto.Direccion is not null)
+                            {
+                                <p class="mb-1"><strong>Provincia:</strong> @Model.Contacto.Direccion.Provincia</p>
+                                <p class="mb-1"><strong>Cantón:</strong> @Model.Contacto.Direccion.Canton</p>
+                                <p class="mb-1"><strong>Distrito:</strong> @Model.Contacto.Direccion.Distrito</p>
+                                <p class="mb-0"><strong>Exacta:</strong> @Model.Contacto.Direccion.DireccionExacta</p>
+                            }
+                            else
+                            {
+                                <p class="text-muted mb-0">Sin dirección registrada.</p>
+                            }
+                        </div>
+
+                        <div class="col-12">
+                            <h3 class="h6 text-uppercase text-muted">Notas</h3>
+                            @if (Model.Contacto.Notas.Any())
+                            {
+                                foreach (var nota in Model.Contacto.Notas)
+                                {
+                                    <div class="border rounded p-3 mb-2 bg-light-subtle">
+                                        @nota.Contenido
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted mb-0">Sin notas registradas.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
