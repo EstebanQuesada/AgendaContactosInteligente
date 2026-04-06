@@ -44,6 +44,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/EsteP/source/repos/AgendaContactosInteligente/AgendaContactosInteligente/Pages/Etiquetas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXRpcXVldGFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EsteP/source/repos/AgendaContactosInteligente/AgendaContactosInteligente/Pages/Etiquetas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXRpcXVldGFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EsteP/source/repos/AgendaContactosInteligente/AgendaContactosInteligente/Pages/Etiquetas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXRpcXVldGFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/EsteP/source/repos/AgendaContactosInteligente/AgendaContactosInteligente/Pages/Etiquetas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXRpcXVldGFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/EsteP/source/repos/AgendaContactosInteligente/AgendaContactosInteligente/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

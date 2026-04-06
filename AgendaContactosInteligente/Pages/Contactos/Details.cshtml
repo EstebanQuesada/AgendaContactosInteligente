@@ -57,6 +57,30 @@
 
                     <div class="col-md-6">
                         <div class="section-card h-100">
+                            <h2 class="section-title">Etiquetas</h2>
+
+                            @if (Model.EtiquetasContacto.Any())
+                            {
+                                <div class="d-flex flex-wrap gap-2">
+                                    @foreach (var etiqueta in Model.EtiquetasContacto)
+                                    {
+                                        <a asp-page="/Contactos/Index"
+                                           asp-route-EtiquetaId="@etiqueta.EtiquetaID"
+                                           class="badge rounded-pill text-bg-light border text-decoration-none px-3 py-2">
+                                            @etiqueta.Nombre
+                                        </a>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <p class="text-muted mb-0">Sin etiquetas asociadas.</p>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="section-card h-100">
                             <h2 class="section-title">Teléfonos</h2>
 
                             @if (Model.Contacto.Telefonos.Any())

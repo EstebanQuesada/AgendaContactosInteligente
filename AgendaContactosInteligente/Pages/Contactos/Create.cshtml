@@ -11,13 +11,15 @@
                 <div class="card-header app-form-header">
                     <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
                         <div>
-                            <p class="form-top-label mb-1">Agenda inteligente</p>
-                            <h1 class="h3 mb-1 fw-bold">Registrar contacto</h1>
-                            <p class="text-muted mb-0">Completa la información del nuevo contacto.</p>
+                            <p class="form-top-label mb-1">Gestión de contactos</p>
+                            <h1 class="h3 mb-1 fw-bold">Nuevo contacto</h1>
+                            <p class="text-muted mb-0">
+                                Registra un nuevo contacto y asígnale etiquetas desde el inicio para una mejor organización.
+                            </p>
                         </div>
 
-                        <a asp-page="/Contactos/Index" class="btn btn-app-outline rounded-pill px-4">
-                            Volver al panel
+                        <a asp-page="Index" class="btn btn-app-outline rounded-pill px-4">
+                            Volver
                         </a>
                     </div>
                 </div>
@@ -51,6 +53,44 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-section-box">
+                                    <h2 class="form-section-title">Etiquetas</h2>
+
+                                    @if (Model.EtiquetasDisponibles.Any())
+                                    {
+                                        <div class="row g-3">
+                                            @foreach (var etiqueta in Model.EtiquetasDisponibles)
+                                            {
+                                                <div class="col-md-6 col-lg-4">
+                                                    <div class="border rounded-3 px-3 py-3 h-100 bg-white">
+                                                        <div class="form-check m-0">
+                                                            <input class="form-check-input"
+                                                                   type="checkbox"
+                                                                   name="SelectedEtiquetaIds"
+                                                                   value="@etiqueta.EtiquetaID"
+                                                                   id="etiqueta_@etiqueta.EtiquetaID"
+                                                                   @(Model.SelectedEtiquetaIds.Contains(etiqueta.EtiquetaID) ? "checked" : null) />
+
+                                                            <label class="form-check-label fw-semibold ms-1"
+                                                                   for="etiqueta_@etiqueta.EtiquetaID">
+                                                                @etiqueta.Nombre
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-light border mb-0">
+                                            No hay etiquetas activas registradas. Puedes crear el contacto ahora y luego asignarle etiquetas desde edición, o bien crear primero las etiquetas.
+                                        </div>
+                                    }
                                 </div>
                             </div>
 
@@ -123,7 +163,7 @@
                         </div>
 
                         <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4 pt-2">
-                            <a asp-page="/Contactos/Index" class="btn btn-app-outline rounded-pill px-4">
+                            <a asp-page="Index" class="btn btn-app-outline rounded-pill px-4">
                                 Cancelar
                             </a>
 

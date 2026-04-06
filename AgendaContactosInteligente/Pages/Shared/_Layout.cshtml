@@ -69,6 +69,40 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle app-nav-link"
+                               href="#"
+                               id="etiquetasDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Etiquetas
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end app-dropdown shadow-lg border-0"
+                                aria-labelledby="etiquetasDropdown">
+                                <li>
+                                    <a class="dropdown-item app-dropdown-item" asp-page="/Etiquetas/Index">
+                                        <span class="dropdown-item-title">Panel de etiquetas</span>
+                                        <small class="dropdown-item-text">Accede al listado y administración</small>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item app-dropdown-item" asp-page="/Etiquetas/Create">
+                                        <span class="dropdown-item-title">Agregar etiqueta</span>
+                                        <small class="dropdown-item-text">Registrar una nueva etiqueta</small>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item app-dropdown-item" asp-page="/Etiquetas/Index">
+                                        <span class="dropdown-item-title">Listado de etiquetas</span>
+                                        <small class="dropdown-item-text">Consultar y administrar etiquetas</small>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link app-nav-link" asp-page="/Privacy">Privacidad</a>
                         </li>

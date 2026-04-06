@@ -36,6 +36,10 @@
                 <a asp-page="/Contactos/Create" class="btn btn-app-outline btn-lg">
                     Crear contacto
                 </a>
+
+                <a asp-page="/Etiquetas/Index" class="btn btn-app-outline btn-lg">
+                    Administrar etiquetas
+                </a>
             </div>
 
             <div class="hero-stats">
@@ -50,6 +54,52 @@
                 <div class="hero-stat">
                     <span class="hero-stat-dot dot-3"></span>
                     <span>Experiencia más clara</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section pt-0 fade-up">
+    <div class="row g-4">
+        <div class="col-12 col-lg-6">
+            <div class="card app-card border-0 h-100">
+                <div class="card-body p-4 p-lg-5">
+                    <div class="page-eyebrow mb-2">Módulo principal</div>
+                    <h2 class="h4 fw-bold mb-2">Gestión de contactos</h2>
+                    <p class="text-muted mb-4">
+                        Registra nuevos contactos, consulta su información, edítalos, elimínalos y administra sus datos principales desde una sola sección.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a asp-page="/Contactos/Index" class="btn btn-app-primary">
+                            Ver contactos
+                        </a>
+                        <a asp-page="/Contactos/Create" class="btn btn-app-outline">
+                            Nuevo contacto
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="card app-card border-0 h-100">
+                <div class="card-body p-4 p-lg-5">
+                    <div class="page-eyebrow mb-2">Clasificación</div>
+                    <h2 class="h4 fw-bold mb-2">Gestión de etiquetas</h2>
+                    <p class="text-muted mb-4">
+                        Crea y administra etiquetas para clasificar contactos, asociarlas fácilmente y mejorar el filtrado y organización de la información.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a asp-page="/Etiquetas/Index" class="btn btn-app-primary">
+                            Ver etiquetas
+                        </a>
+                        <a asp-page="/Etiquetas/Create" class="btn btn-app-outline">
+                            Nueva etiqueta
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

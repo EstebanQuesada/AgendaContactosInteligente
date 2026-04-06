@@ -1,6 +1,4 @@
-﻿using AgendaContactosInteligente.Models;
-
-namespace AgendaContactosInteligente.Models;
+﻿namespace AgendaContactosInteligente.Models;
 
 public class Contacto
 {
@@ -17,4 +15,6 @@ public class Contacto
     public List<Correo> Correos { get; set; } = new();
     public Direccion? Direccion { get; set; }
     public List<Nota> Notas { get; set; } = new();
+
+    public List<Etiqueta> Etiquetas { get; set; } = new();
 }

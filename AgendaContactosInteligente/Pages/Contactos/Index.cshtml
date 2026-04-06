@@ -48,6 +48,55 @@
         </div>
     }
 
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger mb-4">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    <div class="card app-card border-0 mb-4">
+        <div class="card-body p-4">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-12 col-lg-7">
+                    <label asp-for="EtiquetaId" class="form-label fw-semibold">Filtrar por etiqueta</label>
+                    <select asp-for="EtiquetaId" class="form-select rounded-3">
+                        <option value="">Todas las etiquetas</option>
+                        @foreach (var etiqueta in Model.Etiquetas)
+                        {
+                            <option value="@etiqueta.EtiquetaID">@etiqueta.Nombre</option>
+                        }
+                    </select>
+                    <div class="form-text">
+                        Selecciona una etiqueta para mostrar únicamente los contactos asociados.
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-5">
+                    <div class="d-flex flex-column flex-sm-row gap-2">
+                        <button type="submit" class="btn btn-app-primary px-4">
+                            Aplicar filtro
+                        </button>
+
+                        <a asp-page="/Contactos/Index" class="btn btn-app-outline px-4">
+                            Limpiar filtro
+                        </a>
+                    </div>
+                </div>
+            </form>
+
+            @if (Model.EtiquetaId.HasValue && !string.IsNullOrWhiteSpace(Model.EtiquetaNombreSeleccionada))
+            {
+                <div class="mt-3">
+                    <span class="fw-semibold">Filtro activo:</span>
+                    <span class="badge rounded-pill text-bg-light border ms-1 px-3 py-2">
+                        @Model.EtiquetaNombreSeleccionada
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+
     <div class="card app-card border-0">
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -57,6 +106,7 @@
                             <th style="width: 110px;">Favorito</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
+                            <th style="min-width: 240px;">Etiquetas</th>
                             <th style="width: 200px;">Fecha creación</th>
                             <th class="text-end" style="width: 280px;">Acciones</th>
                         </tr>
@@ -65,15 +115,19 @@
                         @if (!Model.Contactos.Any())
                         {
                             <tr>
-                                <td colspan="5" class="text-center py-5 text-muted">
+                                <td colspan="6" class="text-center py-5 text-muted">
                                     <div class="empty-state-table">
                                         <div class="empty-state-icon">⌁</div>
-                                        <div class="fw-semibold mb-1">No hay contactos registrados</div>
-                                        <div class="small">Cuando agregues contactos aparecerán aquí.</div>
+                                        <div class="fw-semibold mb-1">No hay contactos para mostrar</div>
+                                        <div class="small">
+                                            @(Model.EtiquetaId.HasValue
+                                                                                    ? "No se encontraron contactos asociados a la etiqueta seleccionada."
+                                                                                    : "Cuando agregues contactos aparecerán aquí.")
                                     </div>
-                                </td>
-                            </tr>
-                        }
+                                </div>
+                            </td>
+                        </tr>
+                                                }
                         else
                         {
                             foreach (var contacto in Model.Contactos)
@@ -92,6 +146,28 @@
 
                                     <td class="fw-semibold text-dark">@contacto.Nombre</td>
                                     <td>@(string.IsNullOrWhiteSpace(contacto.Apellido) ? "-" : contacto.Apellido)</td>
+
+                                    <td>
+                                        @if (contacto.Etiquetas.Any())
+                                        {
+                                            <div class="d-flex flex-wrap gap-2">
+                                                @foreach (var etiqueta in contacto.Etiquetas)
+                                                {
+                                                    <a asp-page="/Contactos/Index"
+                                                       asp-route-EtiquetaId="@etiqueta.EtiquetaID"
+                                                       class="badge rounded-pill text-decoration-none px-3 py-2"
+                                                       style="background-color:@etiqueta.ColorHex; color:#ffffff;">
+                                                        @etiqueta.Nombre
+                                                    </a>
+                                                }
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted small">Sin etiquetas</span>
+                                        }
+                                    </td>
+
                                     <td class="text-muted">@contacto.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
 
                                     <td class="text-end">

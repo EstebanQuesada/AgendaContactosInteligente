@@ -7,7 +7,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IDbConnectionFactory, SqlConnectionFactory>();
 builder.Services.AddScoped<IContactoRepository, ContactoRepository>();
 builder.Services.AddScoped<IContactoService, ContactoService>();
-
+builder.Services.AddScoped<IEtiquetaRepository, EtiquetaRepository>();
+builder.Services.AddScoped<IEtiquetaService, EtiquetaService>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
