@@ -1091,3 +1091,809 @@ BEGIN
     ORDER BY EsFavorito DESC, Nombre ASC
 END
 GO
+
+
+--V4--------------------------------------------------------------------------------------------------------------------
+USE AgendaContactosDB;
+GO
+
+/* =========================================================
+   AJUSTES ESTRUCTURALES DEL MÓDULO DE ETIQUETAS
+   ========================================================= */
+
+-- 1) Agregar UpdatedAt a Etiqueta si no existe
+IF COL_LENGTH('dbo.Etiqueta', 'UpdatedAt') IS NULL
+BEGIN
+    ALTER TABLE dbo.Etiqueta
+    ADD UpdatedAt DATETIME2 NULL;
+END
+GO
+
+-- 2) Reemplazar restricción única global por índice único filtrado para etiquetas activas
+--    Esto permite eliminar lógicamente una etiqueta y volver a crearla después si hiciera falta.
+IF EXISTS (
+    SELECT 1
+    FROM sys.key_constraints
+    WHERE [type] = 'UQ'
+      AND [name] = 'UQ_Etiqueta_Nombre'
+      AND [parent_object_id] = OBJECT_ID('dbo.Etiqueta')
+)
+BEGIN
+    ALTER TABLE dbo.Etiqueta
+    DROP CONSTRAINT UQ_Etiqueta_Nombre;
+END
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.indexes
+    WHERE [name] = 'UX_Etiqueta_Nombre_Activo'
+      AND [object_id] = OBJECT_ID('dbo.Etiqueta')
+)
+BEGIN
+    CREATE UNIQUE INDEX UX_Etiqueta_Nombre_Activo
+        ON dbo.Etiqueta (Nombre)
+        WHERE IsActive = 1;
+END
+GO
+
+-- 3) Índice adicional para listados de etiquetas activas
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.indexes
+    WHERE [name] = 'IX_Etiqueta_IsActive_Nombre'
+      AND [object_id] = OBJECT_ID('dbo.Etiqueta')
+)
+BEGIN
+    CREATE INDEX IX_Etiqueta_IsActive_Nombre
+        ON dbo.Etiqueta (IsActive, Nombre);
+END
+GO
+
+
+/* =========================================================
+   PROCEDIMIENTOS: ETIQUETA
+   ========================================================= */
+
+-- Crear etiqueta
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_Create
+    @Nombre NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    BEGIN TRY
+        SET @Nombre = LTRIM(RTRIM(@Nombre));
+
+        IF @Nombre IS NULL OR @Nombre = ''
+            THROW 51000, 'El nombre de la etiqueta es obligatorio.', 1;
+
+        IF LEN(@Nombre) > 100
+            THROW 51001, 'El nombre de la etiqueta excede el máximo permitido de 100 caracteres.', 1;
+
+        IF EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE IsActive = 1
+              AND UPPER(LTRIM(RTRIM(Nombre))) = UPPER(@Nombre)
+        )
+            THROW 51002, 'Ya existe una etiqueta activa con ese nombre.', 1;
+
+        INSERT INTO dbo.Etiqueta
+        (
+            Nombre,
+            IsActive,
+            CreatedAt,
+            UpdatedAt
+        )
+        VALUES
+        (
+            @Nombre,
+            1,
+            SYSDATETIME(),
+            NULL
+        );
+
+        DECLARE @EtiquetaID INT = SCOPE_IDENTITY();
+
+        SELECT
+            EtiquetaID,
+            Nombre,
+            IsActive,
+            CreatedAt,
+            UpdatedAt
+        FROM dbo.Etiqueta
+        WHERE EtiquetaID = @EtiquetaID;
+    END TRY
+    BEGIN CATCH
+        IF ERROR_NUMBER() IN (2601, 2627)
+            THROW 51003, 'No fue posible crear la etiqueta porque ya existe una etiqueta activa con ese nombre.', 1;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+
+-- Obtener etiqueta por ID
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_GetById
+    @EtiquetaID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @EtiquetaID IS NULL OR @EtiquetaID <= 0
+        THROW 51010, 'El EtiquetaID es inválido.', 1;
+
+    SELECT
+        EtiquetaID,
+        Nombre,
+        IsActive,
+        CreatedAt,
+        UpdatedAt
+    FROM dbo.Etiqueta
+    WHERE EtiquetaID = @EtiquetaID;
+END;
+GO
+
+
+-- Listar etiquetas
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_List
+    @SoloActivas BIT = 1
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        E.EtiquetaID,
+        E.Nombre,
+        E.IsActive,
+        E.CreatedAt,
+        E.UpdatedAt,
+        CantidadContactos = COUNT(CE.ContactoID)
+    FROM dbo.Etiqueta E
+    LEFT JOIN dbo.ContactoEtiqueta CE
+        ON CE.EtiquetaID = E.EtiquetaID
+    WHERE (@SoloActivas = 0 OR E.IsActive = 1)
+    GROUP BY
+        E.EtiquetaID,
+        E.Nombre,
+        E.IsActive,
+        E.CreatedAt,
+        E.UpdatedAt
+    ORDER BY
+        E.IsActive DESC,
+        E.Nombre ASC;
+END;
+GO
+
+
+-- Actualizar etiqueta
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_Update
+    @EtiquetaID INT,
+    @Nombre NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    BEGIN TRY
+        SET @Nombre = LTRIM(RTRIM(@Nombre));
+
+        IF @EtiquetaID IS NULL OR @EtiquetaID <= 0
+            THROW 51020, 'El EtiquetaID es inválido.', 1;
+
+        IF @Nombre IS NULL OR @Nombre = ''
+            THROW 51021, 'El nombre de la etiqueta es obligatorio.', 1;
+
+        IF LEN(@Nombre) > 100
+            THROW 51022, 'El nombre de la etiqueta excede el máximo permitido de 100 caracteres.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE EtiquetaID = @EtiquetaID
+        )
+            THROW 51023, 'La etiqueta no existe.', 1;
+
+        IF EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE EtiquetaID <> @EtiquetaID
+              AND IsActive = 1
+              AND UPPER(LTRIM(RTRIM(Nombre))) = UPPER(@Nombre)
+        )
+            THROW 51024, 'Ya existe otra etiqueta activa con ese nombre.', 1;
+
+        UPDATE dbo.Etiqueta
+        SET
+            Nombre = @Nombre,
+            UpdatedAt = SYSDATETIME()
+        WHERE EtiquetaID = @EtiquetaID;
+
+        SELECT
+            EtiquetaID,
+            Nombre,
+            IsActive,
+            CreatedAt,
+            UpdatedAt
+        FROM dbo.Etiqueta
+        WHERE EtiquetaID = @EtiquetaID;
+    END TRY
+    BEGIN CATCH
+        IF ERROR_NUMBER() IN (2601, 2627)
+            THROW 51025, 'No fue posible actualizar la etiqueta porque ya existe otra etiqueta activa con ese nombre.', 1;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+
+-- Eliminar lógicamente una etiqueta
+-- Además elimina físicamente sus asociaciones para evitar relaciones residuales.
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_Delete
+    @EtiquetaID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    BEGIN TRY
+        IF @EtiquetaID IS NULL OR @EtiquetaID <= 0
+            THROW 51030, 'El EtiquetaID es inválido.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE EtiquetaID = @EtiquetaID
+        )
+            THROW 51031, 'La etiqueta no existe.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE EtiquetaID = @EtiquetaID
+              AND IsActive = 1
+        )
+            THROW 51032, 'La etiqueta ya se encuentra inactiva.', 1;
+
+        BEGIN TRANSACTION;
+
+            DELETE FROM dbo.ContactoEtiqueta
+            WHERE EtiquetaID = @EtiquetaID;
+
+            UPDATE dbo.Etiqueta
+            SET
+                IsActive = 0,
+                UpdatedAt = SYSDATETIME()
+            WHERE EtiquetaID = @EtiquetaID;
+
+        COMMIT TRANSACTION;
+
+        SELECT
+            CAST(1 AS BIT) AS Ok,
+            'Etiqueta eliminada correctamente.' AS Mensaje;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+
+/* =========================================================
+   PROCEDIMIENTOS: ASOCIACIÓN CONTACTO - ETIQUETA
+   ========================================================= */
+
+-- Asociar etiqueta a contacto
+CREATE OR ALTER PROCEDURE dbo.usp_ContactoEtiqueta_Add
+    @ContactoID INT,
+    @EtiquetaID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    BEGIN TRY
+        IF @ContactoID IS NULL OR @ContactoID <= 0
+            THROW 51100, 'El ContactoID es inválido.', 1;
+
+        IF @EtiquetaID IS NULL OR @EtiquetaID <= 0
+            THROW 51101, 'El EtiquetaID es inválido.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.Contacto
+            WHERE ContactoID = @ContactoID
+              AND IsActive = 1
+        )
+            THROW 51102, 'El contacto no existe o está inactivo.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE EtiquetaID = @EtiquetaID
+              AND IsActive = 1
+        )
+            THROW 51103, 'La etiqueta no existe o está inactiva.', 1;
+
+        IF EXISTS (
+            SELECT 1
+            FROM dbo.ContactoEtiqueta
+            WHERE ContactoID = @ContactoID
+              AND EtiquetaID = @EtiquetaID
+        )
+            THROW 51104, 'La etiqueta ya está asociada a este contacto.', 1;
+
+        INSERT INTO dbo.ContactoEtiqueta
+        (
+            ContactoID,
+            EtiquetaID,
+            CreatedAt
+        )
+        VALUES
+        (
+            @ContactoID,
+            @EtiquetaID,
+            SYSDATETIME()
+        );
+
+        SELECT
+            CE.ContactoID,
+            CE.EtiquetaID,
+            E.Nombre AS EtiquetaNombre,
+            CE.CreatedAt
+        FROM dbo.ContactoEtiqueta CE
+        INNER JOIN dbo.Etiqueta E
+            ON E.EtiquetaID = CE.EtiquetaID
+        WHERE CE.ContactoID = @ContactoID
+          AND CE.EtiquetaID = @EtiquetaID;
+    END TRY
+    BEGIN CATCH
+        IF ERROR_NUMBER() IN (2601, 2627)
+            THROW 51105, 'No fue posible asociar la etiqueta porque ya existe esa relación.', 1;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+
+-- Quitar asociación entre contacto y etiqueta
+CREATE OR ALTER PROCEDURE dbo.usp_ContactoEtiqueta_Remove
+    @ContactoID INT,
+    @EtiquetaID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    BEGIN TRY
+        IF @ContactoID IS NULL OR @ContactoID <= 0
+            THROW 51110, 'El ContactoID es inválido.', 1;
+
+        IF @EtiquetaID IS NULL OR @EtiquetaID <= 0
+            THROW 51111, 'El EtiquetaID es inválido.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.ContactoEtiqueta
+            WHERE ContactoID = @ContactoID
+              AND EtiquetaID = @EtiquetaID
+        )
+            THROW 51112, 'La asociación contacto-etiqueta no existe.', 1;
+
+        DELETE FROM dbo.ContactoEtiqueta
+        WHERE ContactoID = @ContactoID
+          AND EtiquetaID = @EtiquetaID;
+
+        SELECT
+            CAST(1 AS BIT) AS Ok,
+            'La etiqueta fue removida del contacto correctamente.' AS Mensaje;
+    END TRY
+    BEGIN CATCH
+        THROW;
+    END CATCH
+END;
+GO
+
+
+-- Listar etiquetas por contacto
+CREATE OR ALTER PROCEDURE dbo.usp_ContactoEtiqueta_ListByContactoId
+    @ContactoID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @ContactoID IS NULL OR @ContactoID <= 0
+        THROW 51120, 'El ContactoID es inválido.', 1;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM dbo.Contacto
+        WHERE ContactoID = @ContactoID
+          AND IsActive = 1
+    )
+        THROW 51121, 'El contacto no existe o está inactivo.', 1;
+
+    SELECT
+        E.EtiquetaID,
+        E.Nombre,
+        CE.CreatedAt
+    FROM dbo.ContactoEtiqueta CE
+    INNER JOIN dbo.Etiqueta E
+        ON E.EtiquetaID = CE.EtiquetaID
+    WHERE CE.ContactoID = @ContactoID
+      AND E.IsActive = 1
+    ORDER BY E.Nombre ASC;
+END;
+GO
+
+
+-- Listar contactos por etiqueta (filtro básico)
+CREATE OR ALTER PROCEDURE dbo.usp_Contacto_ListByEtiquetaId
+    @EtiquetaID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @EtiquetaID IS NULL OR @EtiquetaID <= 0
+        THROW 51130, 'El EtiquetaID es inválido.', 1;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM dbo.Etiqueta
+        WHERE EtiquetaID = @EtiquetaID
+          AND IsActive = 1
+    )
+        THROW 51131, 'La etiqueta no existe o está inactiva.', 1;
+
+    SELECT
+        C.ContactoID,
+        C.Nombre,
+        C.Apellido,
+        C.EsFavorito,
+        C.FechaCreacion,
+        C.IsActive
+    FROM dbo.ContactoEtiqueta CE
+    INNER JOIN dbo.Contacto C
+        ON C.ContactoID = CE.ContactoID
+    WHERE CE.EtiquetaID = @EtiquetaID
+      AND C.IsActive = 1
+    ORDER BY
+        C.EsFavorito DESC,
+        C.Nombre ASC,
+        C.Apellido ASC;
+END;
+GO
+
+
+-- Listar contactos con filtro opcional por etiqueta
+-- Este SP te sirve mejor para la pantalla Index si quieres mostrar todos o filtrar por una etiqueta.
+CREATE OR ALTER PROCEDURE dbo.usp_Contacto_ListWithOptionalEtiqueta
+    @EtiquetaID INT = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @EtiquetaID IS NOT NULL
+    BEGIN
+        IF @EtiquetaID <= 0
+            THROW 51140, 'El EtiquetaID es inválido.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE EtiquetaID = @EtiquetaID
+              AND IsActive = 1
+        )
+            THROW 51141, 'La etiqueta no existe o está inactiva.', 1;
+    END
+
+    SELECT DISTINCT
+        C.ContactoID,
+        C.Nombre,
+        C.Apellido,
+        C.EsFavorito,
+        C.FechaCreacion,
+        C.IsActive
+    FROM dbo.Contacto C
+    LEFT JOIN dbo.ContactoEtiqueta CE
+        ON CE.ContactoID = C.ContactoID
+    WHERE C.IsActive = 1
+      AND (@EtiquetaID IS NULL OR CE.EtiquetaID = @EtiquetaID)
+    ORDER BY
+        C.EsFavorito DESC,
+        C.Nombre ASC,
+        C.Apellido ASC;
+END;
+GO
+
+--V5--------------------------------------------------------------------------------------------------------------------
+USE AgendaContactosDB;
+GO
+
+/* =========================================================
+   AJUSTE DE ESTRUCTURA
+   ========================================================= */
+
+IF COL_LENGTH('dbo.Etiqueta', 'ColorHex') IS NULL
+BEGIN
+    ALTER TABLE dbo.Etiqueta
+    ADD ColorHex NVARCHAR(7) NOT NULL
+        CONSTRAINT DF_Etiqueta_ColorHex DEFAULT '#6C757D';
+END
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.check_constraints
+    WHERE name = 'CK_Etiqueta_ColorHex'
+      AND parent_object_id = OBJECT_ID('dbo.Etiqueta')
+)
+BEGIN
+    ALTER TABLE dbo.Etiqueta
+    ADD CONSTRAINT CK_Etiqueta_ColorHex
+    CHECK (
+        LEN(ColorHex) = 7
+        AND ColorHex LIKE '#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]'
+    );
+END
+GO
+
+/* =========================================================
+   ETIQUETA - CREATE
+   ========================================================= */
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_Create
+    @Nombre NVARCHAR(100),
+    @ColorHex NVARCHAR(7)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    BEGIN TRY
+        SET @Nombre = LTRIM(RTRIM(@Nombre));
+        SET @ColorHex = UPPER(LTRIM(RTRIM(@ColorHex)));
+
+        IF @Nombre IS NULL OR @Nombre = ''
+            THROW 51000, 'El nombre de la etiqueta es obligatorio.', 1;
+
+        IF LEN(@Nombre) > 100
+            THROW 51001, 'El nombre de la etiqueta excede el máximo permitido de 100 caracteres.', 1;
+
+        IF @ColorHex IS NULL OR @ColorHex = ''
+            THROW 51002, 'El color de la etiqueta es obligatorio.', 1;
+
+        IF LEN(@ColorHex) <> 7
+           OR @ColorHex NOT LIKE '#[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]'
+            THROW 51003, 'El color de la etiqueta no tiene un formato hexadecimal válido.', 1;
+
+        IF EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE IsActive = 1
+              AND UPPER(LTRIM(RTRIM(Nombre))) = UPPER(@Nombre)
+        )
+            THROW 51004, 'Ya existe una etiqueta activa con ese nombre.', 1;
+
+        INSERT INTO dbo.Etiqueta
+        (
+            Nombre,
+            ColorHex,
+            IsActive,
+            CreatedAt,
+            UpdatedAt
+        )
+        VALUES
+        (
+            @Nombre,
+            @ColorHex,
+            1,
+            SYSDATETIME(),
+            NULL
+        );
+
+        DECLARE @EtiquetaID INT = SCOPE_IDENTITY();
+
+        SELECT
+            EtiquetaID,
+            Nombre,
+            ColorHex,
+            IsActive,
+            CreatedAt,
+            UpdatedAt
+        FROM dbo.Etiqueta
+        WHERE EtiquetaID = @EtiquetaID;
+    END TRY
+    BEGIN CATCH
+        IF ERROR_NUMBER() IN (2601, 2627)
+            THROW 51005, 'No fue posible crear la etiqueta porque ya existe una etiqueta activa con ese nombre.', 1;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+/* =========================================================
+   ETIQUETA - GET BY ID
+   ========================================================= */
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_GetById
+    @EtiquetaID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @EtiquetaID IS NULL OR @EtiquetaID <= 0
+        THROW 51010, 'El EtiquetaID es inválido.', 1;
+
+    SELECT
+        E.EtiquetaID,
+        E.Nombre,
+        E.ColorHex,
+        E.IsActive,
+        E.CreatedAt,
+        E.UpdatedAt,
+        CantidadContactos = COUNT(CE.ContactoID)
+    FROM dbo.Etiqueta E
+    LEFT JOIN dbo.ContactoEtiqueta CE
+        ON CE.EtiquetaID = E.EtiquetaID
+    WHERE E.EtiquetaID = @EtiquetaID
+    GROUP BY
+        E.EtiquetaID,
+        E.Nombre,
+        E.ColorHex,
+        E.IsActive,
+        E.CreatedAt,
+        E.UpdatedAt;
+END;
+GO
+
+/* =========================================================
+   ETIQUETA - LIST
+   ========================================================= */
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_List
+    @SoloActivas BIT = 1
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        E.EtiquetaID,
+        E.Nombre,
+        E.ColorHex,
+        E.IsActive,
+        E.CreatedAt,
+        E.UpdatedAt,
+        CantidadContactos = COUNT(CE.ContactoID)
+    FROM dbo.Etiqueta E
+    LEFT JOIN dbo.ContactoEtiqueta CE
+        ON CE.EtiquetaID = E.EtiquetaID
+    WHERE (@SoloActivas = 0 OR E.IsActive = 1)
+    GROUP BY
+        E.EtiquetaID,
+        E.Nombre,
+        E.ColorHex,
+        E.IsActive,
+        E.CreatedAt,
+        E.UpdatedAt
+    ORDER BY
+        E.IsActive DESC,
+        E.Nombre ASC;
+END;
+GO
+
+/* =========================================================
+   ETIQUETA - UPDATE
+   ========================================================= */
+CREATE OR ALTER PROCEDURE dbo.usp_Etiqueta_Update
+    @EtiquetaID INT,
+    @Nombre NVARCHAR(100),
+    @ColorHex NVARCHAR(7)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    BEGIN TRY
+        SET @Nombre = LTRIM(RTRIM(@Nombre));
+        SET @ColorHex = UPPER(LTRIM(RTRIM(@ColorHex)));
+
+        IF @EtiquetaID IS NULL OR @EtiquetaID <= 0
+            THROW 51020, 'El EtiquetaID es inválido.', 1;
+
+        IF @Nombre IS NULL OR @Nombre = ''
+            THROW 51021, 'El nombre de la etiqueta es obligatorio.', 1;
+
+        IF LEN(@Nombre) > 100
+            THROW 51022, 'El nombre de la etiqueta excede el máximo permitido de 100 caracteres.', 1;
+
+        IF @ColorHex IS NULL OR @ColorHex = ''
+            THROW 51023, 'El color de la etiqueta es obligatorio.', 1;
+
+        IF LEN(@ColorHex) <> 7
+           OR @ColorHex NOT LIKE '#[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]'
+            THROW 51024, 'El color de la etiqueta no tiene un formato hexadecimal válido.', 1;
+
+        IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE EtiquetaID = @EtiquetaID
+        )
+            THROW 51025, 'La etiqueta no existe.', 1;
+
+        IF EXISTS (
+            SELECT 1
+            FROM dbo.Etiqueta
+            WHERE EtiquetaID <> @EtiquetaID
+              AND IsActive = 1
+              AND UPPER(LTRIM(RTRIM(Nombre))) = UPPER(@Nombre)
+        )
+            THROW 51026, 'Ya existe otra etiqueta activa con ese nombre.', 1;
+
+        UPDATE dbo.Etiqueta
+        SET
+            Nombre = @Nombre,
+            ColorHex = @ColorHex,
+            UpdatedAt = SYSDATETIME()
+        WHERE EtiquetaID = @EtiquetaID;
+
+        SELECT
+            EtiquetaID,
+            Nombre,
+            ColorHex,
+            IsActive,
+            CreatedAt,
+            UpdatedAt
+        FROM dbo.Etiqueta
+        WHERE EtiquetaID = @EtiquetaID;
+    END TRY
+    BEGIN CATCH
+        IF ERROR_NUMBER() IN (2601, 2627)
+            THROW 51027, 'No fue posible actualizar la etiqueta porque ya existe otra etiqueta activa con ese nombre.', 1;
+
+        THROW;
+    END CATCH
+END;
+GO
+
+/* =========================================================
+   CONTACTO-ETIQUETA - LIST BY CONTACTO
+   ========================================================= */
+CREATE OR ALTER PROCEDURE dbo.usp_ContactoEtiqueta_ListByContactoId
+    @ContactoID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF @ContactoID IS NULL OR @ContactoID <= 0
+        THROW 51120, 'El ContactoID es inválido.', 1;
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM dbo.Contacto
+        WHERE ContactoID = @ContactoID
+          AND IsActive = 1
+    )
+        THROW 51121, 'El contacto no existe o está inactivo.', 1;
+
+    SELECT
+        E.EtiquetaID,
+        E.Nombre,
+        E.ColorHex,
+        E.CreatedAt,
+        E.UpdatedAt,
+        CE.CreatedAt AS RelacionCreatedAt
+    FROM dbo.ContactoEtiqueta CE
+    INNER JOIN dbo.Etiqueta E
+        ON E.EtiquetaID = CE.EtiquetaID
+    WHERE CE.ContactoID = @ContactoID
+      AND E.IsActive = 1
+    ORDER BY E.Nombre ASC;
+END;
+GO
