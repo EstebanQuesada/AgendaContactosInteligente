@@ -12,14 +12,17 @@
 <body class="app-shell">
 
     <header>
-        <nav class="navbar navbar-expand-lg app-navbar sticky-top">
+        <nav class="navbar navbar-expand-lg app-navbar app-navbar-enhanced sticky-top">
             <div class="container">
-                <a class="navbar-brand app-brand" asp-page="/Index">
+                <a class="navbar-brand app-brand app-brand-enhanced" asp-page="/Index">
                     <span class="brand-mark">AC</span>
-                    <span>Agenda Contactos Inteligente</span>
+                    <span class="brand-text-wrap">
+                        <span class="brand-title">Agenda Contactos Inteligente</span>
+                        <small class="brand-subtitle">Gestión clara y moderna</small>
+                    </span>
                 </a>
 
-                <button class="navbar-toggler border-0 shadow-none"
+                <button class="navbar-toggler border-0 shadow-none app-navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#mainNavbar"
@@ -30,7 +33,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="mainNavbar">
-                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 app-nav-list">
                         <li class="nav-item">
                             <a class="nav-link app-nav-link" asp-page="/Index">Inicio</a>
                         </li>
@@ -112,14 +115,23 @@
         </nav>
     </header>
 
-    <main class="container app-main">
+    <main class="container app-main app-main-enhanced">
         @RenderBody()
     </main>
 
-    <footer class="app-footer mt-5">
-        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-            <div>&copy; 2026 - AgendaContactosInteligente</div>
-            <div class="footer-mini-text">Gestión moderna de contactos</div>
+    <footer class="app-footer app-footer-enhanced mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            <div class="footer-brand-block">
+                <div class="footer-title">&copy; 2026 - AgendaContactosInteligente</div>
+                <div class="footer-mini-text">Gestión de contactos</div>
+            </div>
+
+            <div class="footer-links-mini">
+                <a asp-page="/Index" class="footer-link-mini">Inicio</a>
+                <a asp-page="/Contactos/Index" class="footer-link-mini">Contactos</a>
+                <a asp-page="/Etiquetas/Index" class="footer-link-mini">Etiquetas</a>
+                <a asp-page="/Privacy" class="footer-link-mini">Privacidad</a>
+            </div>
         </div>
     </footer>
 

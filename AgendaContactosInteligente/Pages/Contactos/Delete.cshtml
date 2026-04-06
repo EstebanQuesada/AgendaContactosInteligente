@@ -4,28 +4,43 @@
     ViewData["Title"] = "Eliminar contacto";
 }
 
-<div class="row justify-content-center py-2 py-lg-4 fade-up">
+<div class="row justify-content-center py-2 py-lg-4 fade-up contact-delete-page">
     <div class="col-12 col-lg-8 col-xl-7">
-        <div class="card app-card border-0">
-            <div class="card-header app-danger-header py-4 px-4 px-lg-5">
+        <div class="card app-card border-0 overflow-hidden">
+            <div class="card-header app-danger-header py-4 px-4 px-lg-5 delete-hero-header">
                 <div class="page-eyebrow">Gestión de contactos</div>
                 <h1 class="page-title h3 text-danger mb-1">Eliminar contacto</h1>
                 <p class="text-muted mb-0">Revisa la información antes de confirmar esta acción.</p>
             </div>
 
             <div class="card-body p-4 p-lg-5">
-                <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-4 validation-panel"></div>
 
-                <div class="section-card-soft mb-4">
+                <div class="section-card-soft mb-4 delete-confirm-box">
                     <p class="section-title mb-2">Confirmación</p>
                     <p class="mb-0">
                         ¿Deseas eliminar el contacto
                         <strong>@Model.Contacto?.Nombre @Model.Contacto?.Apellido</strong>?
-                        Esta acción desactivará el contacto y sus datos relacionados según los procedimientos almacenados.
+                        Esta acción desactivará el contacto y sus datos relacionados.
                     </p>
                 </div>
 
                 <form method="post">
+                    <div class="delete-contact-preview mb-4">
+                        <div class="delete-avatar">
+                            @(string.IsNullOrWhiteSpace(Model.Contacto?.Nombre) ? "?" : Model.Contacto!.Nombre.Substring(0, 1).ToUpper())
+                        </div>
+
+                        <div>
+                            <div class="fw-bold text-dark">
+                                @Model.Contacto?.Nombre @Model.Contacto?.Apellido
+                            </div>
+                            <div class="text-muted small">
+                                Contacto seleccionado para eliminación
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="d-flex flex-column flex-sm-row justify-content-end gap-2">
                         <a asp-page="Details"
                            asp-route-id="@Model.Contacto?.ContactoID"
@@ -33,7 +48,7 @@
                             Cancelar
                         </a>
 
-                        <button type="submit" class="btn btn-danger px-4 rounded-pill">
+                        <button type="submit" class="btn btn-danger px-4 rounded-pill shadow-sm">
                             Eliminar
                         </button>
                     </div>

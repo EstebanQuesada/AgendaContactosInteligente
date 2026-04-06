@@ -3,116 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\etiquetas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\etiquetas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\models\\etiqueta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\models\\etiqueta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\etiquetas\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\etiquetas\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\etiquetas\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\etiquetas\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\etiquetas\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\etiquetas\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\etiquetas\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\etiquetas\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\services\\etiquetaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\services\\etiquetaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\data\\etiquetarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\data\\etiquetarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\etiquetas\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\etiquetas\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\etiquetas\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\etiquetas\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\etiquetas\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\etiquetas\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\contactos\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\contactos\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\services\\ietiquetaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\services\\ietiquetaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\data\\ietiquetarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\data\\ietiquetarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\models\\contacto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\models\\contacto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\services\\icontactoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\services\\icontactoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\services\\contactoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\services\\contactoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|c:\\users\\estep\\source\\repos\\agendacontactosinteligente\\agendacontactosinteligente\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{498D1B6F-2F52-4A2A-BF66-9295501B9A00}|AgendaContactosInteligente\\AgendaContactosInteligente.csproj|solutionrelative:agendacontactosinteligente\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -122,190 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 30,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Etiqueta.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Models\\Etiqueta.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Models\\Etiqueta.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Models\\Etiqueta.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Models\\Etiqueta.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:11:10.886Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "IEtiquetaRepository.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Data\\IEtiquetaRepository.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Data\\IEtiquetaRepository.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Data\\IEtiquetaRepository.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Data\\IEtiquetaRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:11:38.108Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "EtiquetaRepository.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Data\\EtiquetaRepository.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Data\\EtiquetaRepository.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Data\\EtiquetaRepository.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Data\\EtiquetaRepository.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAmwIEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:11:56.441Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "IEtiquetaService.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Services\\IEtiquetaService.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Services\\IEtiquetaService.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Services\\IEtiquetaService.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Services\\IEtiquetaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:12:22.601Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "EtiquetaService.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Services\\EtiquetaService.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Services\\EtiquetaService.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Services\\EtiquetaService.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Services\\EtiquetaService.cs",
-              "ViewState": "AgIAAI8AAAAAAAAAAAAcwKQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:12:43.113Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Contacto.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Models\\Contacto.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Models\\Contacto.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Models\\Contacto.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Models\\Contacto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:13:42.142Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Index.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Index.cshtml.cs*",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Index.cshtml.cs*",
-              "ViewState": "AgIAABQAAAAAAAAAAAAiwDkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:14:12.226Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Details.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Details.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Details.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Details.cshtml.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Details.cshtml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:14:24.844Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Edit.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Edit.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Edit.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Edit.cshtml.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Edit.cshtml.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAuwF0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:14:32.722Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Program.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Program.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Program.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:22:18.684Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Index.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Index.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Index.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Index.cshtml",
-              "ViewState": "AgIAAK4AAAAAAAAAAAAAAMcAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:14:13.353Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Details.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Details.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Details.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Details.cshtml",
-              "ViewState": "AgIAAJMAAAAAAAAAAAAgwK8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:14:24.111Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Edit.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Edit.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Edit.cshtml",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAgwLsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:14:31.948Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
@@ -332,198 +54,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Create.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Create.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Create.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Create.cshtml",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAkwLYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:40:10.606Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Create.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Create.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Create.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Create.cshtml.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Create.cshtml.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAuwD4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:39:42.758Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAG8AAAAAAAAAAADwv4MAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:33:01.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Index.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Index.cshtml.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Index.cshtml.cs",
+              "DocumentIndex": 0,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Delete.cshtml",
+              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Contactos\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Contactos\\Delete.cshtml",
+              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Contactos\\Delete.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:32:43.133Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Index.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Index.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Index.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGoAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:32:37.1Z",
+              "WhenOpened": "2026-04-06T07:00:49.575Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 1,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Delete.cshtml",
               "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Etiquetas\\Delete.cshtml",
               "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Delete.cshtml",
               "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Etiquetas\\Delete.cshtml",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwDsAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:32:01.052Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Delete.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Delete.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Etiquetas\\Delete.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Delete.cshtml.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Etiquetas\\Delete.cshtml.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAA3wC0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:31:44.026Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Edit.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Etiquetas\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Edit.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Etiquetas\\Edit.cshtml",
-              "ViewState": "AgIAAFAAAAAAAAAAAADwv2QAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:31:22.765Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Edit.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Edit.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Etiquetas\\Edit.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Edit.cshtml.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Etiquetas\\Edit.cshtml.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAuwDIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:30:50.881Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Create.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Etiquetas\\Create.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Create.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Etiquetas\\Create.cshtml",
-              "ViewState": "AgIAAEIAAAAAAAAAAADwv2IAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:30:30.412Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Create.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Create.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Etiquetas\\Create.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Create.cshtml.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Etiquetas\\Create.cshtml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:30:07.097Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Index.cshtml",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Etiquetas\\Index.cshtml",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Index.cshtml",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Etiquetas\\Index.cshtml",
-              "ViewState": "AgIAAHgAAAAAAAAAAAAAAIUAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T05:29:44.79Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Etiquetas\\Index.cshtml.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Etiquetas\\Index.cshtml.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Etiquetas\\Index.cshtml.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:29:17.375Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "ContactoService.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Services\\ContactoService.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Services\\ContactoService.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Services\\ContactoService.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Services\\ContactoService.cs",
-              "ViewState": "AgIAAJIAAAAAAAAAAAAqwKIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:13:55.618Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "IContactoService.cs",
-              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Services\\IContactoService.cs",
-              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Services\\IContactoService.cs",
-              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Services\\IContactoService.cs",
-              "RelativeToolTip": "AgendaContactosInteligente\\Services\\IContactoService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T05:13:48.868Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-06T07:00:19.331Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAH8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-06T06:58:55.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "AgendaContactosInteligente\\Pages\\Index.cshtml",
+              "ToolTip": "C:\\Users\\EsteP\\source\\repos\\AgendaContactosInteligente\\AgendaContactosInteligente\\Pages\\Index.cshtml",
+              "RelativeToolTip": "AgendaContactosInteligente\\Pages\\Index.cshtml",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAACIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-06T06:57:25.169Z"
             }
           ]
         },

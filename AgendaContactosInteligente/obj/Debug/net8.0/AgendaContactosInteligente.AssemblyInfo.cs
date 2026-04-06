@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgendaContactosInteligente")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb2d78c4f2535677dff44b156dce3084edf1df6f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+381e9a4f3dd24d2c3506b7db4ac1d59fabef6cc1")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgendaContactosInteligente")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgendaContactosInteligente")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

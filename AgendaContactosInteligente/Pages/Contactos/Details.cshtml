@@ -4,24 +4,30 @@
     ViewData["Title"] = "Detalle del contacto";
 }
 
-<div class="row justify-content-center py-2 py-lg-4 fade-up">
+<div class="row justify-content-center py-2 py-lg-4 fade-up contact-details-page">
     <div class="col-12 col-xl-10">
         @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
         {
             <div class="alert alert-success app-alert-success mb-4">
-                @Model.SuccessMessage
+                <div class="d-flex align-items-center gap-2">
+                    <span class="alert-mini-icon">✓</span>
+                    <span>@Model.SuccessMessage</span>
+                </div>
             </div>
         }
 
-        <div class="card app-card border-0">
-            <div class="card-header app-detail-header py-4 px-4 px-lg-5">
+        <div class="card app-card border-0 overflow-hidden">
+            <div class="card-header app-detail-header py-4 px-4 px-lg-5 detail-hero-header">
                 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-start gap-3">
-                    <div>
+                    <div class="detail-hero-copy">
                         <div class="page-eyebrow">Detalle del contacto</div>
-                        <h1 class="page-title h3 mb-1">@Model.Contacto!.Nombre @Model.Contacto.Apellido</h1>
-                        <small class="text-muted">
-                            Creado el @Model.Contacto.FechaCreacion.ToString("dd/MM/yyyy HH:mm")
-                        </small>
+                        <h1 class="page-title h3 mb-2">@Model.Contacto!.Nombre @Model.Contacto.Apellido</h1>
+
+                        <div class="detail-meta-row">
+                            <span class="detail-meta-pill">
+                                Creado el @Model.Contacto.FechaCreacion.ToString("dd/MM/yyyy HH:mm")
+                            </span>
+                        </div>
                     </div>
 
                     <div class="d-flex flex-column flex-sm-row gap-2">
@@ -43,10 +49,10 @@
             <div class="card-body p-4 p-lg-5">
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <div class="section-card h-100">
+                        <div class="section-card h-100 detail-section-card">
                             <h2 class="section-title">Datos generales</h2>
 
-                            <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                            <div class="detail-stat-row">
                                 <span class="fw-semibold">Favorito</span>
                                 <span class="info-chip @(Model.Contacto.EsFavorito ? "chip-favorite" : "chip-normal")">
                                     @(Model.Contacto.EsFavorito ? "Sí" : "No")
@@ -56,7 +62,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="section-card h-100">
+                        <div class="section-card h-100 detail-section-card">
                             <h2 class="section-title">Etiquetas</h2>
 
                             @if (Model.EtiquetasContacto.Any())
@@ -66,7 +72,8 @@
                                     {
                                         <a asp-page="/Contactos/Index"
                                            asp-route-EtiquetaId="@etiqueta.EtiquetaID"
-                                           class="badge rounded-pill text-bg-light border text-decoration-none px-3 py-2">
+                                           class="badge rounded-pill text-decoration-none px-3 py-2 detail-tag-link"
+                                           style="background-color:@etiqueta.ColorHex; color:#ffffff;">
                                             @etiqueta.Nombre
                                         </a>
                                     }
@@ -80,7 +87,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="section-card h-100">
+                        <div class="section-card h-100 detail-section-card">
                             <h2 class="section-title">Teléfonos</h2>
 
                             @if (Model.Contacto.Telefonos.Any())
@@ -88,7 +95,7 @@
                                 <div class="d-flex flex-column gap-2">
                                     @foreach (var telefono in Model.Contacto.Telefonos)
                                     {
-                                        <div class="note-box">
+                                        <div class="note-box detail-info-box">
                                             <span class="fw-semibold">@telefono.Numero</span>
                                             <span class="text-muted ms-1">(@telefono.Tipo)</span>
                                         </div>
@@ -103,7 +110,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="section-card h-100">
+                        <div class="section-card h-100 detail-section-card">
                             <h2 class="section-title">Correos</h2>
 
                             @if (Model.Contacto.Correos.Any())
@@ -111,7 +118,9 @@
                                 <div class="d-flex flex-column gap-2">
                                     @foreach (var correo in Model.Contacto.Correos)
                                     {
-                                        <div class="note-box">@correo.Email</div>
+                                        <div class="note-box detail-info-box">
+                                            @correo.Email
+                                        </div>
                                     }
                                 </div>
                             }
@@ -123,16 +132,31 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="section-card h-100">
+                        <div class="section-card h-100 detail-section-card">
                             <h2 class="section-title">Dirección</h2>
 
                             @if (Model.Contacto.Direccion is not null)
                             {
-                                <div class="d-flex flex-column gap-2">
-                                    <div><span class="fw-semibold">Provincia:</span> @Model.Contacto.Direccion.Provincia</div>
-                                    <div><span class="fw-semibold">Cantón:</span> @Model.Contacto.Direccion.Canton</div>
-                                    <div><span class="fw-semibold">Distrito:</span> @Model.Contacto.Direccion.Distrito</div>
-                                    <div><span class="fw-semibold">Exacta:</span> @Model.Contacto.Direccion.DireccionExacta</div>
+                                <div class="detail-address-grid">
+                                    <div class="detail-key-value">
+                                        <span class="detail-kv-label">Provincia</span>
+                                        <span class="detail-kv-value">@Model.Contacto.Direccion.Provincia</span>
+                                    </div>
+
+                                    <div class="detail-key-value">
+                                        <span class="detail-kv-label">Cantón</span>
+                                        <span class="detail-kv-value">@Model.Contacto.Direccion.Canton</span>
+                                    </div>
+
+                                    <div class="detail-key-value">
+                                        <span class="detail-kv-label">Distrito</span>
+                                        <span class="detail-kv-value">@Model.Contacto.Direccion.Distrito</span>
+                                    </div>
+
+                                    <div class="detail-key-value detail-key-value-full">
+                                        <span class="detail-kv-label">Dirección exacta</span>
+                                        <span class="detail-kv-value">@Model.Contacto.Direccion.DireccionExacta</span>
+                                    </div>
                                 </div>
                             }
                             else
@@ -143,7 +167,7 @@
                     </div>
 
                     <div class="col-12">
-                        <div class="section-card">
+                        <div class="section-card detail-section-card">
                             <h2 class="section-title">Notas</h2>
 
                             @if (Model.Contacto.Notas.Any())
@@ -151,7 +175,7 @@
                                 <div class="d-flex flex-column gap-3">
                                     @foreach (var nota in Model.Contacto.Notas)
                                     {
-                                        <div class="note-box">
+                                        <div class="note-box detail-note-box">
                                             @nota.Contenido
                                         </div>
                                     }

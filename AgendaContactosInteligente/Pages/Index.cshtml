@@ -4,8 +4,8 @@
     ViewData["Title"] = "Inicio";
 }
 
-<section class="hero-section fade-up">
-    <div class="hero-card hero-card-bubbles">
+<section class="hero-section fade-up home-page">
+    <div class="hero-card hero-card-bubbles hero-card-enhanced">
         <div class="hero-bubbles" aria-hidden="true">
             <span class="bubble bubble-1"></span>
             <span class="bubble bubble-2"></span>
@@ -15,7 +15,9 @@
             <span class="bubble bubble-6"></span>
         </div>
 
-        <div class="hero-content">
+        <div class="hero-overlay-shape" aria-hidden="true"></div>
+
+        <div class="hero-content hero-content-enhanced">
             <div class="hero-badge">Sistema de gestión</div>
 
             <h1 class="hero-title">
@@ -24,12 +26,12 @@
                 Inteligente
             </h1>
 
-            <p class="hero-subtitle">
-                Organiza, consulta, crea, edita y administra tus contactos en una interfaz más clara, moderna y profesional.
+            <p class="hero-subtitle hero-subtitle-enhanced">
+                Organiza, consulta, crea, edita y administra tus contactos en una interfaz clara, moderna y profesional.
             </p>
 
-            <div class="hero-actions">
-                <a asp-page="/Contactos/Index" class="btn btn-app-primary btn-lg">
+            <div class="hero-actions hero-actions-enhanced">
+                <a asp-page="/Contactos/Index" class="btn btn-app-primary btn-lg hero-btn-main">
                     Ir al panel de contactos
                 </a>
 
@@ -42,7 +44,7 @@
                 </a>
             </div>
 
-            <div class="hero-stats">
+            <div class="hero-stats hero-stats-enhanced">
                 <div class="hero-stat">
                     <span class="hero-stat-dot dot-1"></span>
                     <span>Gestión ordenada</span>
@@ -60,14 +62,26 @@
     </div>
 </section>
 
-<section class="page-section pt-0 fade-up">
+<section class="page-section pt-0 fade-up home-modules-section">
+    <div class="section-block-header mb-4">
+        <div class="page-eyebrow mb-2">Accesos principales</div>
+        <h2 class="section-block-title">Módulos del sistema</h2>
+        <p class="section-block-subtitle mb-0">
+            Accede rápidamente a las secciones principales para administrar contactos y etiquetas.
+        </p>
+    </div>
+
     <div class="row g-4">
         <div class="col-12 col-lg-6">
-            <div class="card app-card border-0 h-100">
-                <div class="card-body p-4 p-lg-5">
+            <div class="card app-card border-0 h-100 home-feature-card home-feature-card-primary">
+                <div class="card-body p-4 p-lg-5 d-flex flex-column">
+                    <div class="feature-icon-wrap mb-3">
+                        <span class="feature-icon">👤</span>
+                    </div>
+
                     <div class="page-eyebrow mb-2">Módulo principal</div>
                     <h2 class="h4 fw-bold mb-2">Gestión de contactos</h2>
-                    <p class="text-muted mb-4">
+                    <p class="text-muted mb-4 flex-grow-1">
                         Registra nuevos contactos, consulta su información, edítalos, elimínalos y administra sus datos principales desde una sola sección.
                     </p>
 
@@ -84,11 +98,15 @@
         </div>
 
         <div class="col-12 col-lg-6">
-            <div class="card app-card border-0 h-100">
-                <div class="card-body p-4 p-lg-5">
+            <div class="card app-card border-0 h-100 home-feature-card home-feature-card-secondary">
+                <div class="card-body p-4 p-lg-5 d-flex flex-column">
+                    <div class="feature-icon-wrap mb-3">
+                        <span class="feature-icon">🏷️</span>
+                    </div>
+
                     <div class="page-eyebrow mb-2">Clasificación</div>
                     <h2 class="h4 fw-bold mb-2">Gestión de etiquetas</h2>
-                    <p class="text-muted mb-4">
+                    <p class="text-muted mb-4 flex-grow-1">
                         Crea y administra etiquetas para clasificar contactos, asociarlas fácilmente y mejorar el filtrado y organización de la información.
                     </p>
 
@@ -105,3 +123,21 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cards = document.querySelectorAll(".home-feature-card");
+            cards.forEach((card, index) => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(14px)";
+                card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+
+                setTimeout(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "translateY(0)";
+                }, 120 * index);
+            });
+        });
+    </script>
+}

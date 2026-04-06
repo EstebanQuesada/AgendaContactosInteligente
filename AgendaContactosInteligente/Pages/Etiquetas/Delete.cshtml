@@ -4,51 +4,67 @@
     ViewData["Title"] = "Eliminar etiqueta";
 }
 
-<div class="container py-4 py-lg-5 fade-up">
+<div class="container py-4 py-lg-5 fade-up etiquetas-delete-page">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8 col-xl-7">
-            <div class="card app-card border-0">
-                <div class="card-header app-detail-header py-4 px-4 px-lg-5">
+            <div class="card app-card border-0 overflow-hidden">
+                <div class="card-header app-detail-header py-4 px-4 px-lg-5 delete-hero-header etiquetas-delete-header">
                     <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
                         <div>
                             <div class="page-eyebrow">Gestión de etiquetas</div>
-                            <h1 class="page-title h3 mb-1">Eliminar etiqueta</h1>
+                            <h1 class="page-title h3 mb-1 text-danger">Eliminar etiqueta</h1>
                             <p class="text-muted mb-0">
                                 Esta acción desactivará la etiqueta y eliminará sus asociaciones actuales.
                             </p>
                         </div>
 
-                        <a asp-page="Index" class="btn btn-app-outline px-4">
+                        <a asp-page="Index" class="btn btn-app-outline px-4 rounded-pill">
                             Volver
                         </a>
                     </div>
                 </div>
 
                 <div class="card-body p-4 p-lg-5">
-                    <div class="section-card">
+                    <div class="section-card delete-etiqueta-card">
                         <h2 class="section-title">Confirmación</h2>
 
                         <p class="mb-3">
                             ¿Deseas eliminar la siguiente etiqueta?
                         </p>
 
-                        <div class="note-box mb-3">
-                            <div><span class="fw-semibold">Nombre:</span> @Model.Etiqueta!.Nombre</div>
-                            <div><span class="fw-semibold">Contactos asociados:</span> @Model.Etiqueta.CantidadContactos</div>
+                        <div class="delete-etiqueta-preview mb-3" id="deleteEtiquetaPreviewCard">
+                            <div class="d-flex align-items-center gap-3 flex-wrap">
+                                <span class="delete-etiqueta-dot"
+                                      id="deleteEtiquetaDot"
+                                      style="background-color:@Model.Etiqueta!.ColorHex;">
+                                </span>
+
+                                <span id="deleteEtiquetaBadge"
+                                      class="badge rounded-pill px-3 py-2 fw-semibold delete-etiqueta-badge"
+                                      data-color="@Model.Etiqueta.ColorHex"
+                                      style="background-color:@Model.Etiqueta.ColorHex;">
+                                    @Model.Etiqueta.Nombre
+                                </span>
+                            </div>
+
+                            <div class="small text-muted mt-3">
+                                Contactos asociados:
+                                <strong>@Model.Etiqueta.CantidadContactos</strong>
+                            </div>
                         </div>
 
-                        <div class="alert alert-warning mb-0">
+                        <div class="alert alert-warning mb-0 rounded-4">
                             Al confirmar, la etiqueta dejará de estar disponible y se quitarán sus asociaciones con los contactos.
                         </div>
                     </div>
 
                     <form method="post" class="mt-4 pt-2">
                         <div class="d-flex flex-column flex-sm-row justify-content-end gap-2">
-                            <a asp-page="Index" class="btn btn-app-outline px-4">
+                            <a asp-page="Index" class="btn btn-app-outline px-4 rounded-pill">
                                 Cancelar
                             </a>
 
-                            <button type="submit" class="btn btn-danger px-4">
+                            <button type="submit" class="btn btn-danger px-4 rounded-pill">
                                 Eliminar etiqueta
                             </button>
                         </div>
@@ -58,3 +74,56 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const badge = document.getElementById("deleteEtiquetaBadge");
+            const previewCard = document.getElementById("deleteEtiquetaPreviewCard");
+            const card = document.querySelector(".app-card");
+            const color = badge?.dataset.color;
+
+            function hexToRgb(hex) {
+                const clean = hex.replace("#", "");
+                return {
+                    r: parseInt(clean.substring(0, 2), 16),
+                    g: parseInt(clean.substring(2, 4), 16),
+                    b: parseInt(clean.substring(4, 6), 16)
+                };
+            }
+
+            function getContrastColor(hex) {
+                const { r, g, b } = hexToRgb(hex);
+                const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+                return luminance > 160 ? "#183845" : "#FFFFFF";
+            }
+
+            function toRgba(hex, alpha) {
+                const { r, g, b } = hexToRgb(hex);
+                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+            }
+
+            if (color && badge) {
+                badge.style.color = getContrastColor(color);
+                badge.style.border = `1px solid ${toRgba(color, 0.30)}`;
+                badge.style.boxShadow = `0 12px 24px ${toRgba(color, 0.18)}`;
+
+                if (previewCard) {
+                    previewCard.style.borderColor = toRgba(color, 0.18);
+                    previewCard.style.boxShadow = `0 10px 22px ${toRgba(color, 0.08)}`;
+                }
+            }
+
+            if (card) {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(12px)";
+                card.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+
+                requestAnimationFrame(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "translateY(0)";
+                });
+            }
+        });
+    </script>
+}

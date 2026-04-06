@@ -4,9 +4,11 @@
     ViewData["Title"] = "Etiquetas";
 }
 
-<section class="page-section fade-up">
-    <div class="page-header-card mb-4">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+<section class="page-section fade-up etiquetas-page">
+    <div class="page-header-card mb-4 etiquetas-hero-card">
+        <div class="hero-pattern"></div>
+
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 position-relative">
             <div>
                 <div class="page-eyebrow">Etiquetas</div>
                 <h1 class="page-title mb-1">Administración de etiquetas</h1>
@@ -23,7 +25,7 @@
         </div>
 
         <div class="quick-access-grid mt-4">
-            <a asp-page="/Etiquetas/Create" class="quick-access-card">
+            <a asp-page="/Etiquetas/Create" class="quick-access-card quick-access-card-enhanced">
                 <div class="quick-access-icon qa-green">＋</div>
                 <div>
                     <h3>Agregar etiqueta</h3>
@@ -31,7 +33,7 @@
                 </div>
             </a>
 
-            <a asp-page="/Etiquetas/Index" class="quick-access-card active">
+            <a asp-page="/Etiquetas/Index" class="quick-access-card quick-access-card-enhanced active">
                 <div class="quick-access-icon qa-blue">#</div>
                 <div>
                     <h3>Listado</h3>
@@ -43,28 +45,28 @@
 
     @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
     {
-        <div class="alert alert-success app-alert-success mb-4">
+        <div class="alert alert-success app-alert-success mb-4 shadow-sm">
             @Model.SuccessMessage
         </div>
     }
 
     @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
     {
-        <div class="alert alert-danger mb-4">
+        <div class="alert alert-danger mb-4 shadow-sm rounded-4 border-0">
             @Model.ErrorMessage
         </div>
     }
 
-    <div class="card app-card border-0">
+    <div class="card app-card border-0 etiquetas-table-card overflow-hidden">
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table app-table align-middle mb-0">
+                <table class="table app-table align-middle mb-0 etiquetas-table">
                     <thead>
                         <tr>
                             <th>Etiqueta</th>
-                            <th style="width: 180px;">Contactos asociados</th>
-                            <th style="width: 200px;">Fecha creación</th>
-                            <th class="text-end" style="width: 280px;">Acciones</th>
+                            <th style="width: 190px;">Contactos asociados</th>
+                            <th style="width: 210px;">Fecha creación</th>
+                            <th class="text-end" style="width: 290px;">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,34 +74,56 @@
                         {
                             <tr>
                                 <td colspan="4" class="text-center py-5 text-muted">
-                                    <div class="empty-state-table">
+                                    <div class="empty-state-table empty-state-table-enhanced">
                                         <div class="empty-state-icon">#</div>
                                         <div class="fw-semibold mb-1">No hay etiquetas registradas</div>
                                         <div class="small">Cuando agregues etiquetas aparecerán aquí.</div>
+
+                                        <div class="mt-3">
+                                            <a asp-page="/Etiquetas/Create" class="btn btn-app-primary btn-sm px-4">
+                                                Crear etiqueta
+                                            </a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
                         }
                         else
                         {
-                            foreach (var etiqueta in Model.Etiquetas)
+                            @foreach (var etiqueta in Model.Etiquetas)
                             {
-                                <tr>
+                                <tr class="etiqueta-row">
                                     <td>
-                                        <span class="badge rounded-pill px-3 py-2 fw-semibold"
-                                              style="background-color:@etiqueta.ColorHex; color:#ffffff;">
-                                            @etiqueta.Nombre
-                                        </span>
+                                        <div class="etiqueta-name-cell">
+                                            <span class="etiqueta-color-pill"
+                                                  style="background-color:@etiqueta.ColorHex;">
+                                            </span>
+
+                                            <div class="etiqueta-main-info">
+                                                <span class="badge rounded-pill px-3 py-2 fw-semibold etiqueta-badge etiqueta-color-auto"
+                                                      data-color="@etiqueta.ColorHex"
+                                                      style="background-color:@etiqueta.ColorHex;">
+                                                    @etiqueta.Nombre
+                                                </span>
+
+                                                <small class="etiqueta-meta-text">
+                                                    Color: @etiqueta.ColorHex
+                                                </small>
+                                            </div>
+                                        </div>
                                     </td>
 
                                     <td>
-                                        <span class="badge rounded-pill text-bg-light border px-3 py-2">
+                                        <span class="badge rounded-pill etiquetas-count-badge">
                                             @etiqueta.CantidadContactos
                                         </span>
                                     </td>
 
                                     <td class="text-muted">
-                                        @etiqueta.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                                        <div class="date-block">
+                                            <span>@etiqueta.CreatedAt.ToString("dd/MM/yyyy")</span>
+                                            <small>@etiqueta.CreatedAt.ToString("HH:mm")</small>
+                                        </div>
                                     </td>
 
                                     <td class="text-end">
@@ -132,3 +156,51 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const rows = document.querySelectorAll(".etiqueta-row");
+
+            function hexToRgb(hex) {
+                const clean = hex.replace("#", "");
+                return {
+                    r: parseInt(clean.substring(0, 2), 16),
+                    g: parseInt(clean.substring(2, 4), 16),
+                    b: parseInt(clean.substring(4, 6), 16)
+                };
+            }
+
+            function getContrastColor(hex) {
+                const { r, g, b } = hexToRgb(hex);
+                const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+                return luminance > 160 ? "#183845" : "#FFFFFF";
+            }
+
+            function toRgba(hex, alpha) {
+                const { r, g, b } = hexToRgb(hex);
+                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+            }
+
+            rows.forEach((row, index) => {
+                row.style.opacity = "0";
+                row.style.transform = "translateY(10px)";
+                row.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+
+                setTimeout(() => {
+                    row.style.opacity = "1";
+                    row.style.transform = "translateY(0)";
+                }, 60 * index);
+            });
+
+            document.querySelectorAll(".etiqueta-color-auto").forEach(el => {
+                const color = el.dataset.color;
+                if (!color) return;
+
+                el.style.color = getContrastColor(color);
+                el.style.border = `1px solid ${toRgba(color, 0.30)}`;
+                el.style.boxShadow = `0 10px 22px ${toRgba(color, 0.18)}`;
+            });
+        });
+    </script>
+}

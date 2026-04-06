@@ -4,38 +4,41 @@
     ViewData["Title"] = "Lista de contactos";
 }
 
-<section class="page-section fade-up">
-    <div class="page-header-card mb-4">
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
-            <div>
+<section class="page-section fade-up contactos-page">
+    <div class="page-header-card contact-hero-card mb-4">
+        <div class="hero-pattern"></div>
+
+        <div class="d-flex flex-column flex-xl-row justify-content-between align-items-xl-center gap-4 position-relative">
+            <div class="hero-copy">
                 <div class="page-eyebrow">Contactos</div>
-                <h1 class="page-title mb-1">Panel de contactos</h1>
+                <h1 class="page-title mb-2">Panel de contactos</h1>
                 <p class="page-subtitle mb-0">
-                    Consulta, administra y accede rápidamente a las acciones principales.
+                    Consulta, administra y accede rápidamente a las acciones principales de tus contactos.
                 </p>
             </div>
 
-            <div class="d-flex flex-column flex-sm-row gap-2">
-                <a asp-page="/Contactos/Create" class="btn btn-app-primary">
-                    Nuevo contacto
+            <div class="d-flex flex-column flex-sm-row gap-2 hero-actions-panel">
+                <a asp-page="/Contactos/Create" class="btn btn-app-primary contact-main-cta">
+                    <span class="btn-icon">＋</span>
+                    <span>Nuevo contacto</span>
                 </a>
             </div>
         </div>
 
-        <div class="quick-access-grid mt-4">
-            <a asp-page="/Contactos/Create" class="quick-access-card">
+        <div class="quick-access-grid quick-access-grid-enhanced mt-4">
+            <a asp-page="/Contactos/Create" class="quick-access-card quick-access-card-enhanced">
                 <div class="quick-access-icon qa-green">＋</div>
                 <div>
                     <h3>Agregar contacto</h3>
-                    <p>Registrar un nuevo contacto rápidamente.</p>
+                    <p>Registrar un nuevo contacto de forma rápida y ordenada.</p>
                 </div>
             </a>
 
-            <a asp-page="/Contactos/Index" class="quick-access-card active">
+            <a asp-page="/Contactos/Index" class="quick-access-card quick-access-card-enhanced active">
                 <div class="quick-access-icon qa-blue">☰</div>
                 <div>
                     <h3>Listado</h3>
-                    <p>Ver y administrar los contactos registrados.</p>
+                    <p>Visualiza, organiza y administra todos los contactos registrados.</p>
                 </div>
             </a>
         </div>
@@ -43,24 +46,38 @@
 
     @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
     {
-        <div class="alert alert-success app-alert-success mb-4">
-            @Model.SuccessMessage
+        <div class="alert alert-success app-alert-success mb-4 shadow-sm">
+            <div class="d-flex align-items-center gap-2">
+                <span class="alert-mini-icon">✓</span>
+                <span>@Model.SuccessMessage</span>
+            </div>
         </div>
     }
 
     @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
     {
-        <div class="alert alert-danger mb-4">
-            @Model.ErrorMessage
+        <div class="alert alert-danger mb-4 shadow-sm rounded-4 border-0">
+            <div class="d-flex align-items-center gap-2">
+                <span class="alert-mini-icon danger">!</span>
+                <span>@Model.ErrorMessage</span>
+            </div>
         </div>
     }
 
-    <div class="card app-card border-0 mb-4">
-        <div class="card-body p-4">
+    <div class="card app-card border-0 mb-4 contact-filter-card">
+        <div class="card-body p-4 p-lg-4">
+            <div class="filter-card-header mb-3">
+                <div>
+                    <div class="form-top-label mb-1">Búsqueda visual</div>
+                    <h2 class="h5 fw-bold mb-1">Filtrar contactos</h2>
+                    <p class="text-muted mb-0">Selecciona una etiqueta para ver únicamente los contactos relacionados.</p>
+                </div>
+            </div>
+
             <form method="get" class="row g-3 align-items-end">
                 <div class="col-12 col-lg-7">
                     <label asp-for="EtiquetaId" class="form-label fw-semibold">Filtrar por etiqueta</label>
-                    <select asp-for="EtiquetaId" class="form-select rounded-3">
+                    <select asp-for="EtiquetaId" class="form-select rounded-4 app-select-enhanced">
                         <option value="">Todas las etiquetas</option>
                         @foreach (var etiqueta in Model.Etiquetas)
                         {
@@ -73,7 +90,7 @@
                 </div>
 
                 <div class="col-12 col-lg-5">
-                    <div class="d-flex flex-column flex-sm-row gap-2">
+                    <div class="d-flex flex-column flex-sm-row gap-2 filter-actions">
                         <button type="submit" class="btn btn-app-primary px-4">
                             Aplicar filtro
                         </button>
@@ -87,9 +104,9 @@
 
             @if (Model.EtiquetaId.HasValue && !string.IsNullOrWhiteSpace(Model.EtiquetaNombreSeleccionada))
             {
-                <div class="mt-3">
-                    <span class="fw-semibold">Filtro activo:</span>
-                    <span class="badge rounded-pill text-bg-light border ms-1 px-3 py-2">
+                <div class="active-filter-panel mt-3">
+                    <span class="active-filter-label">Filtro activo</span>
+                    <span class="active-filter-badge">
                         @Model.EtiquetaNombreSeleccionada
                     </span>
                 </div>
@@ -97,18 +114,18 @@
         </div>
     </div>
 
-    <div class="card app-card border-0">
+    <div class="card app-card border-0 contact-table-card overflow-hidden">
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table app-table align-middle mb-0">
+                <table class="table app-table contact-table align-middle mb-0">
                     <thead>
                         <tr>
-                            <th style="width: 110px;">Favorito</th>
+                            <th style="width: 120px;">Favorito</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
-                            <th style="min-width: 240px;">Etiquetas</th>
-                            <th style="width: 200px;">Fecha creación</th>
-                            <th class="text-end" style="width: 280px;">Acciones</th>
+                            <th style="min-width: 260px;">Etiquetas</th>
+                            <th style="width: 210px;">Fecha creación</th>
+                            <th class="text-end" style="width: 290px;">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,36 +133,60 @@
                         {
                             <tr>
                                 <td colspan="6" class="text-center py-5 text-muted">
-                                    <div class="empty-state-table">
+                                    <div class="empty-state-table empty-state-table-enhanced">
                                         <div class="empty-state-icon">⌁</div>
-                                        <div class="fw-semibold mb-1">No hay contactos para mostrar</div>
-                                        <div class="small">
+                                        <div class="fw-semibold mb-1 fs-6">No hay contactos para mostrar</div>
+                                        <div class="small empty-state-text">
                                             @(Model.EtiquetaId.HasValue
                                                                                     ? "No se encontraron contactos asociados a la etiqueta seleccionada."
                                                                                     : "Cuando agregues contactos aparecerán aquí.")
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+
+                                        <div class="mt-3">
+                                            <a asp-page="/Contactos/Create" class="btn btn-app-primary btn-sm px-4">
+                                                Crear contacto
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                                                 }
                         else
                         {
                             foreach (var contacto in Model.Contactos)
                             {
-                                <tr>
+                                <tr class="contact-row">
                                     <td>
                                         @if (contacto.EsFavorito)
                                         {
-                                            <span class="badge favorite-badge">Sí</span>
+                                            <span class="badge favorite-badge contact-status-badge">
+                                                ★ Favorito
+                                            </span>
                                         }
                                         else
                                         {
-                                            <span class="badge normal-badge">No</span>
+                                            <span class="badge normal-badge contact-status-badge">
+                                                Normal
+                                            </span>
                                         }
                                     </td>
 
-                                    <td class="fw-semibold text-dark">@contacto.Nombre</td>
-                                    <td>@(string.IsNullOrWhiteSpace(contacto.Apellido) ? "-" : contacto.Apellido)</td>
+                                    <td>
+                                        <div class="contact-name-cell">
+                                            <div class="contact-avatar">
+                                                @(string.IsNullOrWhiteSpace(contacto.Nombre) ? "?" : contacto.Nombre.Substring(0, 1).ToUpper())
+                                            </div>
+                                            <div>
+                                                <div class="fw-semibold text-dark">@contacto.Nombre</div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-body-secondary">
+                                            @(string.IsNullOrWhiteSpace(contacto.Apellido) ? "-" : contacto.Apellido)
+                                        </span>
+                                    </td>
 
                                     <td>
                                         @if (contacto.Etiquetas.Any())
@@ -155,7 +196,7 @@
                                                 {
                                                     <a asp-page="/Contactos/Index"
                                                        asp-route-EtiquetaId="@etiqueta.EtiquetaID"
-                                                       class="badge rounded-pill text-decoration-none px-3 py-2"
+                                                       class="contact-tag-link badge rounded-pill text-decoration-none px-3 py-2"
                                                        style="background-color:@etiqueta.ColorHex; color:#ffffff;">
                                                         @etiqueta.Nombre
                                                     </a>
@@ -164,11 +205,16 @@
                                         }
                                         else
                                         {
-                                            <span class="text-muted small">Sin etiquetas</span>
+                                            <span class="contact-empty-label">Sin etiquetas</span>
                                         }
                                     </td>
 
-                                    <td class="text-muted">@contacto.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td class="text-muted">
+                                        <div class="date-block">
+                                            <span>@contacto.FechaCreacion.ToString("dd/MM/yyyy")</span>
+                                            <small>@contacto.FechaCreacion.ToString("HH:mm")</small>
+                                        </div>
+                                    </td>
 
                                     <td class="text-end">
                                         <div class="d-flex justify-content-end flex-wrap gap-2">
@@ -200,3 +246,19 @@
         </div>
     </div>
 </section>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const rows = document.querySelectorAll(".contact-row");
+            rows.forEach((row, index) => {
+                row.style.opacity = "0";
+                row.style.transform = "translateY(10px)";
+                row.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+                setTimeout(() => {
+                    row.style.opacity = "1";
+                    row.style.transform = "translateY(0)";
+                }, 60 * index);
+            });
+        });
+    </script>
+}

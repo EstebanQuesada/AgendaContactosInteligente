@@ -4,11 +4,11 @@
     ViewData["Title"] = "Nuevo contacto";
 }
 
-<div class="container py-4 py-lg-5 fade-up">
+<div class="container py-4 py-lg-5 fade-up contact-form-page">
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
             <div class="card app-form-card border-0 overflow-hidden">
-                <div class="card-header app-form-header">
+                <div class="card-header app-form-header contact-form-header">
                     <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
                         <div>
                             <p class="form-top-label mb-1">Gestión de contactos</p>
@@ -26,28 +26,31 @@
 
                 <div class="card-body p-4 p-lg-5">
                     <form method="post" novalidate>
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4 validation-panel"></div>
 
                         <div class="row g-4">
                             <div class="col-12">
                                 <div class="form-section-box form-section-highlight">
-                                    <h2 class="form-section-title">Información principal</h2>
+                                    <div class="section-headline-wrap">
+                                        <h2 class="form-section-title">Información principal</h2>
+                                        <p class="section-support-text mb-0">Datos base del contacto.</p>
+                                    </div>
 
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label asp-for="Input.Nombre" class="form-label fw-semibold"></label>
-                                            <input asp-for="Input.Nombre" class="form-control form-control-lg rounded-3" />
+                                            <input asp-for="Input.Nombre" class="form-control form-control-lg rounded-3" placeholder="Ingresa el nombre" />
                                             <span asp-validation-for="Input.Nombre" class="text-danger small"></span>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label asp-for="Input.Apellido" class="form-label fw-semibold"></label>
-                                            <input asp-for="Input.Apellido" class="form-control form-control-lg rounded-3" />
+                                            <input asp-for="Input.Apellido" class="form-control form-control-lg rounded-3" placeholder="Ingresa el apellido" />
                                             <span asp-validation-for="Input.Apellido" class="text-danger small"></span>
                                         </div>
 
                                         <div class="col-12">
-                                            <div class="form-check form-switch mt-1 app-switch">
+                                            <div class="form-check form-switch mt-1 app-switch contact-switch-box">
                                                 <input asp-for="Input.EsFavorito" class="form-check-input" />
                                                 <label asp-for="Input.EsFavorito" class="form-check-label fw-semibold"></label>
                                             </div>
@@ -58,7 +61,10 @@
 
                             <div class="col-12">
                                 <div class="form-section-box">
-                                    <h2 class="form-section-title">Etiquetas</h2>
+                                    <div class="section-headline-wrap">
+                                        <h2 class="form-section-title">Etiquetas</h2>
+                                        <p class="section-support-text mb-0">Selecciona una o varias etiquetas para clasificar el contacto.</p>
+                                    </div>
 
                                     @if (Model.EtiquetasDisponibles.Any())
                                     {
@@ -66,8 +72,8 @@
                                             @foreach (var etiqueta in Model.EtiquetasDisponibles)
                                             {
                                                 <div class="col-md-6 col-lg-4">
-                                                    <div class="border rounded-3 px-3 py-3 h-100 bg-white">
-                                                        <div class="form-check m-0">
+                                                    <div class="tag-option-card">
+                                                        <div class="form-check m-0 d-flex align-items-center gap-2">
                                                             <input class="form-check-input"
                                                                    type="checkbox"
                                                                    name="SelectedEtiquetaIds"
@@ -75,9 +81,10 @@
                                                                    id="etiqueta_@etiqueta.EtiquetaID"
                                                                    @(Model.SelectedEtiquetaIds.Contains(etiqueta.EtiquetaID) ? "checked" : null) />
 
-                                                            <label class="form-check-label fw-semibold ms-1"
+                                                            <label class="form-check-label fw-semibold ms-1 d-flex align-items-center gap-2 flex-wrap"
                                                                    for="etiqueta_@etiqueta.EtiquetaID">
-                                                                @etiqueta.Nombre
+                                                                <span class="tag-color-dot" style="background-color:@etiqueta.ColorHex;"></span>
+                                                                <span>@etiqueta.Nombre</span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -87,7 +94,7 @@
                                     }
                                     else
                                     {
-                                        <div class="alert alert-light border mb-0">
+                                        <div class="alert alert-light border mb-0 rounded-4 empty-soft-box">
                                             No hay etiquetas activas registradas. Puedes crear el contacto ahora y luego asignarle etiquetas desde edición, o bien crear primero las etiquetas.
                                         </div>
                                     }
@@ -96,24 +103,27 @@
 
                             <div class="col-12">
                                 <div class="form-section-box">
-                                    <h2 class="form-section-title">Contacto</h2>
+                                    <div class="section-headline-wrap">
+                                        <h2 class="form-section-title">Contacto</h2>
+                                        <p class="section-support-text mb-0">Información principal de comunicación.</p>
+                                    </div>
 
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label asp-for="Input.TelefonoNumero" class="form-label fw-semibold">Teléfono</label>
-                                            <input asp-for="Input.TelefonoNumero" class="form-control rounded-3" />
+                                            <input asp-for="Input.TelefonoNumero" class="form-control rounded-3" placeholder="Ej. 8888-8888" />
                                             <span asp-validation-for="Input.TelefonoNumero" class="text-danger small"></span>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label asp-for="Input.TelefonoTipo" class="form-label fw-semibold">Tipo de teléfono</label>
-                                            <input asp-for="Input.TelefonoTipo" class="form-control rounded-3" />
+                                            <input asp-for="Input.TelefonoTipo" class="form-control rounded-3" placeholder="Ej. Personal, Trabajo..." />
                                             <span asp-validation-for="Input.TelefonoTipo" class="text-danger small"></span>
                                         </div>
 
                                         <div class="col-12">
                                             <label asp-for="Input.Email" class="form-label fw-semibold">Correo</label>
-                                            <input asp-for="Input.Email" class="form-control rounded-3" />
+                                            <input asp-for="Input.Email" class="form-control rounded-3" placeholder="correo@ejemplo.com" />
                                             <span asp-validation-for="Input.Email" class="text-danger small"></span>
                                         </div>
                                     </div>
@@ -122,7 +132,10 @@
 
                             <div class="col-12">
                                 <div class="form-section-box">
-                                    <h2 class="form-section-title">Dirección</h2>
+                                    <div class="section-headline-wrap">
+                                        <h2 class="form-section-title">Dirección</h2>
+                                        <p class="section-support-text mb-0">Ubicación general del contacto.</p>
+                                    </div>
 
                                     <div class="row g-3">
                                         <div class="col-md-4">
@@ -142,7 +155,7 @@
 
                                         <div class="col-12">
                                             <label asp-for="Input.DireccionExacta" class="form-label fw-semibold">Dirección exacta</label>
-                                            <textarea asp-for="Input.DireccionExacta" class="form-control rounded-3" rows="3"></textarea>
+                                            <textarea asp-for="Input.DireccionExacta" class="form-control rounded-3" rows="3" placeholder="Detalle adicional de la dirección"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -150,19 +163,22 @@
 
                             <div class="col-12">
                                 <div class="form-section-box">
-                                    <h2 class="form-section-title">Información adicional</h2>
+                                    <div class="section-headline-wrap">
+                                        <h2 class="form-section-title">Información adicional</h2>
+                                        <p class="section-support-text mb-0">Notas complementarias del contacto.</p>
+                                    </div>
 
                                     <div class="row g-3">
                                         <div class="col-12">
                                             <label asp-for="Input.NotaContenido" class="form-label fw-semibold">Nota</label>
-                                            <textarea asp-for="Input.NotaContenido" class="form-control rounded-3" rows="4"></textarea>
+                                            <textarea asp-for="Input.NotaContenido" class="form-control rounded-3" rows="4" placeholder="Agrega una nota si lo deseas"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4 pt-2">
+                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4 pt-2 form-actions-bar">
                             <a asp-page="Index" class="btn btn-app-outline rounded-pill px-4">
                                 Cancelar
                             </a>

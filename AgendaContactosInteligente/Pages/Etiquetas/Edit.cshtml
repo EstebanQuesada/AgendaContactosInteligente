@@ -4,7 +4,7 @@
     ViewData["Title"] = "Editar etiqueta";
 }
 
-<div class="container py-4 py-lg-5 fade-up">
+<div class="container py-4 py-lg-5 fade-up etiquetas-form-page">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8 col-xl-7">
             @if (!string.IsNullOrWhiteSpace(Model.SuccessMessage))
@@ -15,7 +15,7 @@
             }
 
             <div class="card app-form-card border-0 overflow-hidden">
-                <div class="card-header app-form-header">
+                <div class="card-header app-form-header etiquetas-form-header">
                     <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
                         <div>
                             <p class="form-top-label mb-1">Gestión de etiquetas</p>
@@ -35,44 +35,64 @@
                     <form method="post" novalidate>
                         <input asp-for="Input.EtiquetaID" type="hidden" />
 
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4 validation-panel"></div>
 
                         <div class="form-section-box form-section-highlight">
-                            <h2 class="form-section-title">Información de la etiqueta</h2>
+                            <div class="section-headline-wrap">
+                                <h2 class="form-section-title">Información de la etiqueta</h2>
+                                <p class="section-support-text mb-0">
+                                    Ajusta el nombre y el color para mantener una clasificación clara.
+                                </p>
+                            </div>
 
                             <div class="row g-4">
                                 <div class="col-12">
                                     <label asp-for="Input.Nombre" class="form-label fw-semibold"></label>
-                                    <input asp-for="Input.Nombre" class="form-control form-control-lg rounded-3" maxlength="100" />
+                                    <input asp-for="Input.Nombre"
+                                           class="form-control form-control-lg rounded-3"
+                                           maxlength="100"
+                                           id="etiquetaNombreInput" />
                                     <span asp-validation-for="Input.Nombre" class="text-danger small"></span>
                                 </div>
 
                                 <div class="col-12">
                                     <label asp-for="Input.ColorHex" class="form-label fw-semibold">Color de la etiqueta</label>
 
-                                    <div class="row g-3 align-items-center">
+                                    <div class="row g-3 align-items-stretch">
                                         <div class="col-12 col-md-3 col-lg-2">
-                                            <input asp-for="Input.ColorHex"
-                                                   type="color"
-                                                   class="form-control form-control-color rounded-3 w-100"
-                                                   title="Seleccionar color" />
+                                            <div class="color-picker-box h-100">
+                                                <input asp-for="Input.ColorHex"
+                                                       id="etiquetaColorPicker"
+                                                       type="color"
+                                                       class="form-control form-control-color rounded-3 w-100"
+                                                       title="Seleccionar color" />
+                                            </div>
                                         </div>
 
                                         <div class="col-12 col-md-5 col-lg-4">
-                                            <input asp-for="Input.ColorHex"
-                                                   class="form-control rounded-3 text-uppercase"
-                                                   maxlength="7"
-                                                   placeholder="#4F46E5" />
-                                            <span asp-validation-for="Input.ColorHex" class="text-danger small"></span>
+                                            <div class="color-code-box h-100">
+                                                <input asp-for="Input.ColorHex"
+                                                       id="etiquetaColorText"
+                                                       class="form-control rounded-3 text-uppercase"
+                                                       maxlength="7"
+                                                       placeholder="#4F46E5" />
+                                                <span asp-validation-for="Input.ColorHex" class="text-danger small"></span>
+                                            </div>
                                         </div>
 
                                         <div class="col-12 col-md-4 col-lg-6">
-                                            <div class="border rounded-3 px-3 py-3 bg-white">
+                                            <div class="preview-card" id="etiquetaPreviewCard">
                                                 <span class="fw-semibold d-block mb-2">Vista previa</span>
-                                                <span class="badge rounded-pill px-3 py-2"
-                                                      style="background-color:@Model.Input.ColorHex; color:#ffffff;">
-                                                    @(string.IsNullOrWhiteSpace(Model.Input.Nombre) ? "Etiqueta de ejemplo" : Model.Input.Nombre)
-                                                </span>
+
+                                                <div class="preview-card-inner">
+                                                    <span id="etiquetaPreviewBadge"
+                                                          class="badge rounded-pill px-3 py-2 etiqueta-preview-badge"
+                                                          style="background-color:@Model.Input.ColorHex; color:#ffffff;">
+                                                        <span id="etiquetaPreviewText">
+                                                            @(string.IsNullOrWhiteSpace(Model.Input.Nombre) ? "Etiqueta de ejemplo" : Model.Input.Nombre)
+                                                        </span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +100,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4 pt-2">
+                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4 pt-2 form-actions-bar">
                             <a asp-page="Index" class="btn btn-app-outline rounded-pill px-4">
                                 Cancelar
                             </a>
@@ -98,4 +118,95 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const colorPicker = document.getElementById("etiquetaColorPicker");
+            const colorText = document.getElementById("etiquetaColorText");
+            const nameInput = document.getElementById("etiquetaNombreInput");
+            const previewBadge = document.getElementById("etiquetaPreviewBadge");
+            const previewText = document.getElementById("etiquetaPreviewText");
+            const previewCard = document.getElementById("etiquetaPreviewCard");
+            const card = document.querySelector(".app-form-card, .app-card");
+
+            function isValidHex(value) {
+                return /^#([0-9A-Fa-f]{6})$/.test(value);
+            }
+
+            function normalizeHex(value) {
+                if (!value) return "";
+                return value.trim().toUpperCase();
+            }
+
+            function hexToRgb(hex) {
+                const clean = hex.replace("#", "");
+                return {
+                    r: parseInt(clean.substring(0, 2), 16),
+                    g: parseInt(clean.substring(2, 4), 16),
+                    b: parseInt(clean.substring(4, 6), 16)
+                };
+            }
+
+            function getContrastColor(hex) {
+                const { r, g, b } = hexToRgb(hex);
+                const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+                return luminance > 160 ? "#183845" : "#FFFFFF";
+            }
+
+            function toRgba(hex, alpha) {
+                const { r, g, b } = hexToRgb(hex);
+                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+            }
+
+            function updatePreviewText() {
+                const text = nameInput.value.trim();
+                previewText.textContent = text !== "" ? text : "Etiqueta de ejemplo";
+            }
+
+            function updatePreviewColor(value, syncPicker) {
+                const normalized = normalizeHex(value);
+
+                if (!isValidHex(normalized)) return;
+
+                const contrastColor = getContrastColor(normalized);
+
+                previewBadge.style.backgroundColor = normalized;
+                previewBadge.style.color = contrastColor;
+                previewBadge.style.border = `1px solid ${toRgba(normalized, 0.35)}`;
+                previewBadge.style.boxShadow = `0 12px 24px ${toRgba(normalized, 0.22)}`;
+
+                previewCard.style.borderColor = toRgba(normalized, 0.22);
+                previewCard.style.boxShadow = `0 10px 22px ${toRgba(normalized, 0.08)}`;
+
+                if (syncPicker) {
+                    colorPicker.value = normalized;
+                }
+            }
+
+            colorPicker.addEventListener("input", function () {
+                colorText.value = colorPicker.value.toUpperCase();
+                updatePreviewColor(colorPicker.value, false);
+            });
+
+            colorText.addEventListener("input", function () {
+                updatePreviewColor(colorText.value, true);
+            });
+
+            nameInput.addEventListener("input", updatePreviewText);
+
+            updatePreviewText();
+            updatePreviewColor(colorText.value || colorPicker.value, true);
+
+            if (card) {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(12px)";
+                card.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+
+                requestAnimationFrame(() => {
+                    card.style.opacity = "1";
+                    card.style.transform = "translateY(0)";
+                });
+            }
+        });
+    </script>
 }
