@@ -14,6 +14,5 @@ public interface IEtiquetaRepository
     Task RemoveFromContactoAsync(int contactoId, int etiquetaId);
 
     Task<IReadOnlyList<Etiqueta>> GetEtiquetasByContactoIdAsync(int contactoId);
-
     Task<IReadOnlyList<Contacto>> GetContactosAsync(int? etiquetaId = null);
 }

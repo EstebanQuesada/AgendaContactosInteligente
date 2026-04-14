@@ -24,6 +24,23 @@ public class ContactoRepository : IContactoRepository
         return rows.ToList();
     }
 
+    public async Task<IReadOnlyList<Contacto>> ListCompleteAsync()
+    {
+        var contactos = (await ListAsync()).ToList();
+
+        if (contactos.Count == 0)
+            return contactos;
+
+        var tareas = contactos.Select(async contacto =>
+        {
+            var detalle = await GetByIdAsync(contacto.ContactoID);
+            return detalle ?? contacto;
+        });
+
+        var resultado = await Task.WhenAll(tareas);
+        return resultado.ToList();
+    }
+
     public async Task<Contacto?> GetByIdAsync(int contactoId)
     {
         using var connection = _connectionFactory.CreateConnection();
@@ -40,13 +57,15 @@ public class ContactoRepository : IContactoRepository
         var correosTask = GetCorreosByContactoIdAsync(contactoId);
         var direccionTask = GetDireccionByContactoIdAsync(contactoId);
         var notasTask = GetNotasByContactoIdAsync(contactoId);
+        var etiquetasTask = GetEtiquetasByContactoIdAsync(contactoId);
 
-        await Task.WhenAll(telefonosTask, correosTask, direccionTask, notasTask);
+        await Task.WhenAll(telefonosTask, correosTask, direccionTask, notasTask, etiquetasTask);
 
         contacto.Telefonos = telefonosTask.Result.ToList();
         contacto.Correos = correosTask.Result.ToList();
         contacto.Direccion = direccionTask.Result;
         contacto.Notas = notasTask.Result.ToList();
+        contacto.Etiquetas = etiquetasTask.Result.ToList();
 
         return contacto;
     }
@@ -287,5 +306,17 @@ public class ContactoRepository : IContactoRepository
             "dbo.usp_Nota_Delete",
             new { NotaID = notaId },
             commandType: CommandType.StoredProcedure);
+    }
+
+    public async Task<IReadOnlyList<Etiqueta>> GetEtiquetasByContactoIdAsync(int contactoId)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+
+        var rows = await connection.QueryAsync<Etiqueta>(
+            "dbo.usp_ContactoEtiqueta_ListByContactoId",
+            new { ContactoID = contactoId },
+            commandType: CommandType.StoredProcedure);
+
+        return rows.ToList();
     }
 }

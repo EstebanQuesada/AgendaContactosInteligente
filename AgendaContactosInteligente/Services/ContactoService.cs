@@ -7,14 +7,23 @@ namespace AgendaContactosInteligente.Services;
 public class ContactoService : IContactoService
 {
     private readonly IContactoRepository _repository;
+    private readonly MotorBusquedaInteligente _motorBusquedaInteligente = new();
 
     public ContactoService(IContactoRepository repository)
     {
-        _repository = repository;
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     public Task<IReadOnlyList<Contacto>> ListAsync()
         => _repository.ListAsync();
+
+    public async Task<IReadOnlyList<ResultadoBusqueda>> BuscarAsync(CriteriosBusqueda criterios)
+    {
+        var criteriosNormalizados = NormalizarCriteriosBusqueda(criterios);
+        var contactos = await _repository.ListCompleteAsync();
+
+        return _motorBusquedaInteligente.Buscar(contactos, criteriosNormalizados);
+    }
 
     public async Task<int> CrearAsync(ContactoFormViewModel model)
     {
@@ -54,6 +63,14 @@ public class ContactoService : IContactoService
 
     public Task EliminarAsync(int contactoId)
         => _repository.DeleteAsync(contactoId);
+
+    public CriteriosBusqueda NormalizarCriteriosBusqueda(CriteriosBusqueda criterios)
+    {
+        if (criterios is null)
+            throw new InvalidOperationException("Los criterios de búsqueda son obligatorios.");
+
+        return criterios.ValidarYObtenerNormalizado();
+    }
 
     private async Task GuardarDatosRelacionadosAsync(int contactoId, ContactoFormViewModel model, bool isEdit)
     {

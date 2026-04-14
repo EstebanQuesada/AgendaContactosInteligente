@@ -5,7 +5,7 @@ namespace AgendaContactosInteligente.Data;
 public interface IContactoRepository
 {
     Task<IReadOnlyList<Contacto>> ListAsync();
-
+    Task<IReadOnlyList<Contacto>> ListCompleteAsync();
     Task<Contacto?> GetByIdAsync(int contactoId);
     Task<int> CreateAsync(Contacto contacto);
     Task UpdateAsync(Contacto contacto);
@@ -29,4 +29,6 @@ public interface IContactoRepository
     Task<int> CreateNotaAsync(Nota nota);
     Task UpdateNotaAsync(Nota nota);
     Task DeleteNotaAsync(int notaId);
+
+    Task<IReadOnlyList<Etiqueta>> GetEtiquetasByContactoIdAsync(int contactoId);
 }
